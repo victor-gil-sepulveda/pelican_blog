@@ -2,4 +2,7 @@
 
 vagrant plugin install vagrant-triggers
 
-sudo pip install clip
+git clone https://github.com/willyg302/clip.py.git
+cd clip.py/
+sudo python setup.py install
+cd ..
