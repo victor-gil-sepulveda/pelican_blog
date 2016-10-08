@@ -69,4 +69,11 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   config.vm.provision "shell", path: "./scripts/vagrant/provision.sh"
+  
+  # Run before the machine is 'upped'
+  config.trigger.after :up do
+    info "Regenerating blog ..."
+    run_remote  "bash /vagrant/scripts/vagrant/after_up.sh"
+  end
+  
 end
