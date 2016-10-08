@@ -75,5 +75,7 @@ Vagrant.configure("2") do |config|
     info "Regenerating blog ..."
     run_remote  "bash /vagrant/scripts/vagrant/after_up.sh"
   end
-  
+
+  # This correctly forwards the development server 
+  config.vm.network "forwarded_port", guest: 8000, host: 8080
 end
