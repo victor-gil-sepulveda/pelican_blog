@@ -52,4 +52,4 @@ child.sendline('Y')
 child.expect ('your personal page', timeout=5)
 child.sendline('Y')
 
-child.interact()
+child.expect(pexpect.EOF)
