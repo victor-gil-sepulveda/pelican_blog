@@ -14,7 +14,7 @@ def manage():
 
 @manage.subcommand(description='Creates a new post using the current timestamp')
 @clip.arg('title', required=True)
-@clip.opt('-d', '--draft', default=True, help='If defined, the new post will be a draft')
+@clip.opt('-d', '--draft', default=False, help='If defined, the new post will be a draft')
 def new_post(title, draft):
     """
     Based on http://nafiulis.me/making-a-static-blog-with-pelican.html
