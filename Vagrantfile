@@ -2,6 +2,11 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox" do |v|
+    v.name = "pelican_nest"
+  end
+
+      
   config.vm.box = "ubuntu/trusty64"
 
   config.vm.provision "shell", path: "./scripts/vagrant/provision.sh"

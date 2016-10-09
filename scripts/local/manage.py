@@ -1,5 +1,6 @@
 import os, inspect, clip
 from datetime import datetime
+import vagrant
 
 def load_template(name):
     current_path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -11,6 +12,13 @@ app = clip.App()
 @app.main(description='Basic manager for my Pelican Blog')
 def manage():
     pass
+
+@manage.subcommand(description='Starts the development server')
+def serve():
+    vagrant_handler = vagrant.Vagrant()
+    if vagrant_handler.status()[0].state != "running":
+        vagrant_handler.up()
+    os.system('vagrant ssh -c "bash /vagrant/scripts/vagrant/start_serving.sh"')
 
 @manage.subcommand(description='Creates a new post using the current timestamp')
 @clip.arg('title', required=True)

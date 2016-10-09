@@ -2,15 +2,16 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'I'
-SITENAME = u'Test'
+AUTHOR = u'Víctor A. Gil'
+SITENAME = u'The lost library of Agraphur'
+SITESUBTITLE = u'Little pieces that form a whole'
 SITEURL = ''
 
 PATH = 'content'
 
 TIMEZONE = 'Europe/Paris'
 
-DEFAULT_LANG = u'es'
+DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -33,3 +34,8 @@ DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+
+# Location of the theme we are using
+THEME = "theme"
+
+DISPLAY_PAGES_ON_MENU = True

@@ -9,4 +9,4 @@ pip install pelican
 pip install ghp-import
 pip install pexpect # Must issue a Python3 related error. Not relevant for this installation.
 
-
+pip install livereload

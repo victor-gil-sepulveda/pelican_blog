@@ -6,3 +6,5 @@ git clone https://github.com/willyg302/clip.py.git
 cd clip.py/
 sudo python setup.py install
 cd ..
+
+sudo pip install python-vagrant
