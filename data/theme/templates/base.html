@@ -57,6 +57,12 @@
 						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url }}">{{ name }}</a></li>
 					  {% endfor %}
 					{% endif %}
+					
+					{% if SOCIAL_ICONS_MENU %}
+						{% for name, image, url in SOCIAL_ICONS_MENU %}
+						<li  class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url }}"><img src='{{ image }}' alt='{{ name }}'></a></li>
+						{% endfor %}
+					{% endif %}
 
 				</ul>
 			</div> <!--/#menu-navigation-container-->
