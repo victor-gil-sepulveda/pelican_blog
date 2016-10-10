@@ -21,7 +21,7 @@ def serve():
     os.system('vagrant ssh -c "bash /vagrant/scripts/vagrant/start_serving.sh"')
 
 @manage.subcommand(description='Creates a new post using the current timestamp')
-@clip.arg('title', required=True)
+@clip.arg('title', required=True, help='The title of the post')
 @clip.opt('-d', '--draft', default=False, help='If defined, the new post will be a draft')
 def new_post(title, draft):
     """
@@ -44,6 +44,29 @@ def new_post(title, draft):
     with open(f_create, 'w') as w:
         w.write(t)
     clip.echo('File created -> {}'.format(f_create))
+
+@manage.subcommand(description='Creates a new page')
+@clip.arg('title', required=True, help='The title of the post')
+@clip.opt('-a', '--author', default=u"V0x0237ctor Gil", help='Athor of the page')
+@clip.opt('-s', '--summary', default="", help='Brief explanation of page contents')
+def new_page(title, author, summary):
+    today = datetime.today()
+    os.system("mkdir -p content/pages")
+    slug = title.lower().strip().replace(' ', '-')
+    f_create = "content/pages/{}.rst".format(slug)
+    t = load_template("new_page.template").format(title=title,
+                                hashes='#' * len(title),
+                                year=today.year,
+                                month=today.month,
+                                day=today.day,
+                                hour=today.hour,
+                                minute=today.minute,
+                                slug=slug,
+                                author = author,
+                                summary = summary)
+    with open(f_create, 'w') as w:
+        w.write(t)
+    clip.echo('Page created -> {}'.format(f_create))
 
 if __name__ == '__main__':
     try:

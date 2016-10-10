@@ -19,7 +19,7 @@ body {
 	background-image: -moz-linear-gradient( rgba(0,0,0,0.22), rgba(255,255,255,0) 80px );
 	background-image: -webkit-linear-gradient( rgba(0,0,0,0.22), rgba(255,255,255,0) 80px );
 	color: #555;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Cabin', Helvetica, Arial, sans-serif;
 	font-size: 13px;
 	margin: 0;
 	text-align: center;
@@ -33,6 +33,7 @@ body {
 	min-height: 180px;
 	padding-top: 70px;
 	width: 800px;
+	background-image: "";
 }
 #contents {
 	border-left: 1px solid #ccc;
@@ -46,11 +47,11 @@ body {
 ----------------------------------------------- */
 #site-title {
 	color: #000;
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
-	font-weight: bold;
-	font-size: 80px;
+	font-family: 'Lobster', Georgia, Times, serif;
+	/*font-weight: bold;*/
+	font-size: 70px;
 	margin: 0px;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	text-rendering: optimizeLegibility;
 }
 #site-title a {
@@ -59,16 +60,18 @@ body {
 	text-decoration: none;
 }
 #site-title a:hover {
-	color: #36bcab;
+	color: #bbbbbb;
+	/*text-shadow:0px 0px 6px #005522;*/
 }
 #site-description {
-	background: #f1f1f1;
+    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+	/*background: #f1f1f1;
 	background-image: -webkit-linear-gradient( #f8f8f8, #eee);
-	background-image: -moz-linear-gradient( #f8f8f8, #eee);
+	background-image: -moz-linear-gradient( #f8f8f8, #eee);*/
 	border-radius: 3px;
 	color: #666;
 	display: inline-block;
-	font-size: 14px;
+	font-size: 20px;
 	font-weight: 300;
 	margin-top: 0;
 	margin-bottom: 50px;
@@ -86,7 +89,7 @@ body {
 	border-top: 1px solid #ddd;
 	margin-bottom: 25px;
 	padding: 10px;
-	text-align: right;
+	text-align: left;
 	width: 800px;
 }
 #menu img {
@@ -808,7 +811,7 @@ article.comment {
 	width: 800px;
 }
 #footer a {
-	color: #36bcab;
+	color: #bbbbbb;
 	text-decoration: none;
 }
 

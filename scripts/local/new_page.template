@@ -1,4 +1,8 @@
-Title: 
-Slug: 
+{title}
+{hashes}
 
-
+:date: {year}-{month}-{day} {hour}:{minute:02d}
+:modified: {year}-{month}-{day} {hour}:{minute:02d}
+:slug: {slug}
+:authors: {author}
+:summary: {summary}
