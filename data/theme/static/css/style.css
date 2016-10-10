@@ -41,6 +41,12 @@ body {
 	margin-left: 199px;
 	padding-bottom: 10px;
 }
+#page-contents{
+	border: 0px;
+	height: auto;
+	margin-left: 20px;
+	padding-bottom: 10px;
+}
 
 
 /* =Header
