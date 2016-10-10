@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Víctor A. Gil'
 SITENAME = u'The lost library of Agraphur'
 SITESUBTITLE = u'Little pieces that form a whole'
-SITEURL = 'http://http://127.0.0.1:8080' # for correct feed generation
+SITEURL = '' # for correct feed generation
 
 PATH = 'content'
 
@@ -37,4 +37,4 @@ THEME = "theme"
 
 DISPLAY_PAGES_ON_MENU = True
 
-DELETE_OUTPUT_DIRECTORY = True
+DELETE_OUTPUT_DIRECTORY = False 
