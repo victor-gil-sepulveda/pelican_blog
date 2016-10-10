@@ -40,8 +40,14 @@ DISPLAY_PAGES_ON_MENU = True
 DELETE_OUTPUT_DIRECTORY = False
 
 SOCIAL_ICONS_MENU = (
-            ("LinkedIn", "theme/images/linked-in.png", ""),
+            ("Feed", "theme/images/feed.png", ""),
             ("Twitter", "theme/images/twitter.png", ""),
+            ("LinkedIn", "theme/images/linked-in.png", ""),
             ("Google+", "theme/images/google-plus.png", ""),
-            ("Feed", "theme/images/feed.png", ""))
+            )
 
+LINKS = (
+        ("Home", "/"),
+        )
+
+DISQUS_SITENAME = "thelostlibraryofagraphur"
