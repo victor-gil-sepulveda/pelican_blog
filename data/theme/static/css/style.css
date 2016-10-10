@@ -70,7 +70,7 @@ body {
 	/*text-shadow:0px 0px 6px #005522;*/
 }
 #site-description {
-    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+        font-family: 'Cabin', Helvetica, Arial, sans-serif;
 	/*background: #f1f1f1;
 	background-image: -webkit-linear-gradient( #f8f8f8, #eee);
 	background-image: -moz-linear-gradient( #f8f8f8, #eee);*/
@@ -103,7 +103,7 @@ body {
 	max-width:100%;
 	max-height:100%;
 	float: right;
-	filter: brightness(120%);	
+	filter: brightness(140%);	
 }
 
 #menu a {
