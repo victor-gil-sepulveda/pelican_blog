@@ -103,7 +103,7 @@ body {
 	max-width:100%;
 	max-height:100%;
 	float: right;
-	-webkit-filter: brightness(80%);	
+	-webkit-filter: brightness(50%);	
 }
 #menu img:hover {
 	-webkit-filter: brightness(100%);	
