@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Víctor A. Gil'
 SITENAME = u'The lost library of Agraphur'
-SITESUBTITLE = u'Little pieces that form a whole'
+SITESUBTITLE = u'Pieces from a whole'
 SITEURL = '' # for correct feed generation
 
 PATH = 'content'
@@ -39,5 +39,9 @@ DISPLAY_PAGES_ON_MENU = True
 
 DELETE_OUTPUT_DIRECTORY = False
 
-SOCIAL_ICONS_MENU = (("LinkedIn","theme/images/linked-in.png", ""),)
+SOCIAL_ICONS_MENU = (
+            ("LinkedIn", "theme/images/linked-in.png", ""),
+            ("Twitter", "theme/images/twitter.png", ""),
+            ("Google+", "theme/images/google-plus.png", ""),
+            ("Feed", "theme/images/feed.png", ""))
 
