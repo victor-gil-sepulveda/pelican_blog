@@ -41,23 +41,23 @@
 		<div id="menu">
 			<div class="menu-navigation-container">
 				<ul id="menu-navigation" class="menu">
-					{% for title, link in MENUITEMS %}
+					<!--{% for title, link in MENUITEMS %}
 						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ link }}">{{ title }}</a></li>
 					{% endfor %}
-					  {% for p in PAGES %}
-						<li{% if p == page %} class="active"{% endif %} class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
-					  {% endfor %}
+					  
 					{% if DISPLAY_CATEGORIES_ON_MENU %}
 					  {% for cat, null in categories %}
 						<li{% if cat == category %} class="active"{% endif %} class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
 					  {% endfor %}
-					{% endif %}
+					{% endif %}-->
 					{% if LINKS %}
 					  {% for name, url in LINKS %}
 						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url }}">{{ name }}</a></li>
 					  {% endfor %}
 					{% endif %}
-						
+					{% for p in PAGES %}
+						<li{% if p == page %} class="active"{% endif %} class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+					{% endfor %}
 				{% if SOCIAL_ICONS_MENU %}
 					{% for name, image, url in SOCIAL_ICONS_MENU %}
 					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="{{ url }}" style="margin: 0px; padding: 0px" target="_blank"><img src='{{ SITEURL }}/{{ image }}' alt='{{ name }}' style = 'margin:0px; padding:0px;'></a></li>
