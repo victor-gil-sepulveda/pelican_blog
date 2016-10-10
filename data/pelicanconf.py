@@ -41,6 +41,7 @@ DELETE_OUTPUT_DIRECTORY = False
 
 SOCIAL_ICONS_MENU = (
             ("Feed", "theme/images/feed.png", ""),
+            ("Contact", "theme/images/contact.png", ""),
             ("Twitter", "theme/images/twitter.png", ""),
             ("LinkedIn", "theme/images/linked-in.png", ""),
             ("Google+", "theme/images/google-plus.png", ""),
