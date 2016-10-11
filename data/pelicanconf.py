@@ -52,3 +52,11 @@ LINKS = (
         )
 
 DISQUS_SITENAME = "thelostlibraryofagraphur"
+
+STATIC_PATHS = [ # TODO : Robots.txt
+    'images', 
+    'extra/favicon.ico' 
+]
+EXTRA_PATH_METADATA = {
+    'extra/favicon.ico': {'path': 'favicon.ico'}
+}
