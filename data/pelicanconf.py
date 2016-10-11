@@ -60,3 +60,5 @@ STATIC_PATHS = [ # TODO : Robots.txt
 EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'}
 }
+
+#TEMPLATE_PAGES = {'pages/templates/repositories.html': 'repositories.html'}
