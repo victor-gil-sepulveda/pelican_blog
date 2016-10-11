@@ -1,19 +1,21 @@
-{% extends "base.html" %}
-{% block content_title %}
-{% endblock %}
-{% block title %}{{ SITENAME }} &mdash; {{ article.title|striptags }}{% endblock %}
+{% extends "page.html" %}
 {% block head %}
 {{ super() }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-<script src="js/github_repos.js" type="text/javascript"></script>
-<script id="repostemplate" type="text/x-handlebars-template">
-  <div class="entry">
-    <h1>{{title}}</h1>
-    <div class="body">
-      {{body}}
-    </div>
+<script src="/theme/js/github_repos.js" type="text/javascript"></script>
+<script id="repos_template" type="text/x-handlebars-template">
+{% raw %}<!-- Everything in here will be left untouched by Jinja2 -->
+{{#each repos}}
+  <div id="repo-card">
+    <h1>{{name}}</h1>
   </div>
+{{/each}} 
 </script>
-
+{% endraw %}
 {% endblock head %}
+
+{% block contents %}
+<div id="contents-page">
+</div>
+{% endblock %}
