@@ -1,15 +1,36 @@
 {% extends "page.html" %}
 {% block head %}
 {{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/repo_card.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 <script src="/theme/js/github_repos.js" type="text/javascript"></script>
 <script id="repos_template" type="text/x-handlebars-template">
 {% raw %}<!-- Everything in here will be left untouched by Jinja2 -->
+
+<h2 class="entry-title"><a href="/pages/repos.html" title="Permalink to Public Repositories" rel="bookmark">Public Repositories</a></h2>
+
 {{#each repos}}
-  <div id="repo-card">
-    <h1>{{name}}</h1>
-  </div>
+<a href = "{{link}}"  target="_blank">
+    <div class="repo-card">
+        <div class="repo-card-title">
+            
+            <div class="repo-card-title-element">
+                <h1>{{name}}</h1>
+            </div>
+            
+            <div class="repo-card-title-element"> 
+                &#9734; {{stars}} 
+            </div>
+        </div>
+        <div class="repo-card-description">
+            {{description}}
+        </div>
+        <div class="repo-card-language">
+            {{main_language}}
+        </div>
+    </div>
+</a>
 {{/each}} 
 </script>
 {% endraw %}

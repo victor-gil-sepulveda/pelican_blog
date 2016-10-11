@@ -40,23 +40,34 @@ function process_repo_response(response){
      var repos = JSON.parse(response);
      
      // Order by stars
-     repos.sort(function(x,y){return x.stargazers_count > y.stargazers_count;});
+     repos.sort(function(x,y){return x.stargazers_count < y.stargazers_count;});
      
      // Get interesting stuff from each object
      var i;
      var promises = new Array();
+     var name;
      for ( i = 0; i < repos.length; i++){
         var repo = repos[i];
-        var new_repo = {};
-        new_repo["name"] = repo["name"];
-        new_repo["link"] = repo["html_url"];
-        new_repo["stars"] = repo["stargazers_count"];
-        new_repo["description"] = repo["description"];
-        new_repo["main_language"] = repo["language"];
-        var deferred = $.Deferred();
-        html_get_languages(repo["languages_url"], new_repo, deferred);
-        promises.push(deferred.promise());
-     	pruned_repos.push(new_repo);
+        if(!repo.fork){
+            var new_repo = {};
+            name =  repo["name"];
+            if (name.length >20){
+                name = name.substring(0,19)+"...";
+            }
+            new_repo["name"] = name;
+            new_repo["link"] = repo["html_url"];
+            new_repo["stars"] = repo["stargazers_count"];
+            description = repo["description"];
+            if(!!description && description.length > 150){
+                description = description.substring(0,150)+"...";
+            }
+            new_repo["description"] = description;
+            new_repo["main_language"] = repo["language"];
+            var deferred = $.Deferred();
+            html_get_languages(repo["languages_url"], new_repo, deferred);
+            promises.push(deferred.promise());
+         	pruned_repos.push(new_repo);
+         }
      }
      
      console.log(pruned_repos);
