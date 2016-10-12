@@ -41,10 +41,10 @@ DELETE_OUTPUT_DIRECTORY = False
 
 SOCIAL_ICONS_MENU = (
             ("Feed", "theme/images/feed.png", ""),
-            ("Contact", "theme/images/contact.png", ""),
-            ("Twitter", "theme/images/twitter.png", ""),
-            ("LinkedIn", "theme/images/linked-in.png", ""),
-            ("Google+", "theme/images/google-plus.png", ""),
+            ("Contact", "theme/images/contact.png", "mailto:victor.gil.sepulveda@gmail.com"),
+            ("Twitter", "theme/images/twitter.png", "https://twitter.com/intent/follow?screen_name=vgilsep"),
+            ("LinkedIn", "theme/images/linked-in.png", "https://es.linkedin.com/in/víctor-a-gil-4509b0115"),
+            ("Google+", "theme/images/google-plus.png", "https://plus.google.com/u/0/110041683601844851417"),
             )
 
 PLUGINS = ['my_pelican_plugins.static_repo_generation',]

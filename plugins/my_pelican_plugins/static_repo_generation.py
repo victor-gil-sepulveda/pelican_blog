@@ -27,10 +27,10 @@ def get_github_repos(user_id):
                 lang_json_text = urllib2.urlopen(repo["languages_url"]).read()
                 new_repo["all_languages"] = json.loads(lang_json_text)
             except:
-                print "[ERROR] IMPOSSIBLE TO READ LANG INFO FOR GITHUB REPO: %s"%repo["name"]
+                print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ LANG INFO FOR GITHUB REPO: %s"%repo["name"]
             new_repos.append(new_repo);
     except:
-        print "[ERROR] IMPOSSIBLE TO READ OR PROCESS GITHUB REPOSITORIES"
+        print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ OR PROCESS GITHUB REPOSITORIES"
     return new_repos
         
 def get_bitbucket_repos(user_id):
@@ -54,7 +54,7 @@ def get_bitbucket_repos(user_id):
             new_repo["type"] = "bitbucket"
             new_repos.append(new_repo)
     except:
-        print "[ERROR] IMPOSSIBLE TO READ OR PROCESS BITBUCKET REPOSITORIES"
+        print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ OR PROCESS BITBUCKET REPOSITORIES"
     return new_repos
     
 def get_repo_info(generator):
