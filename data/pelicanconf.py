@@ -47,8 +47,14 @@ SOCIAL_ICONS_MENU = (
             ("Google+", "theme/images/google-plus.png", ""),
             )
 
+PLUGINS = ['my_pelican_plugins.static_repo_generation',]
+GITHUB_USER = "victor-gil-sepulveda"
+BITBUCKET_USER = "victor_gil_sepulveda"
+DIRECT_TEMPLATES = ['index', 'categories', 'authors', 'archives', "repositories_static", "tags"]
 LINKS = (
         ("Home", "/"),
+        ("Tags", "/tags.html"),
+        ("Repos", "/repositories_static.html")
         )
 
 DISQUS_SITENAME = "thelostlibraryofagraphur"
@@ -61,4 +67,5 @@ EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'}
 }
 
-#TEMPLATE_PAGES = {'pages/templates/repositories.html': 'repositories.html'}
+#TEMPLATE_PAGES = {'theme/repositories_static.html': 'repositories.html'}
+

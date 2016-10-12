@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/repo_card.css" />
+{% endblock head %}
+
+{% block title %}PUBLIC REPOSITORIES{% endblock %}
+
+{% block content %}
+CIAO
+<div id="contents-page">
+{% if repositories %}
+{% for repo in repositories %}
+<a href = "{{repo.link}}"  target="blank" style="text-decoration: none;">
+    <div class="repo-card">
+        <div class="repo-card-title">
+            
+            <div class="repo-card-title-element">
+                <h1>{{repo.name}}</h1>
+            </div>
+            {% if repo.stars %}
+            <div class="repo-card-title-element"> 
+                &#9734; {{repo.stars}} 
+            </div>
+            {% endif %}
+        </div>
+        <div class="repo-card-description">
+            {{repo.description}}
+        </div>
+        <div class="repo-card-footer">
+            <div class="repo-card-repotype">
+                <img src="/theme/images/{{repo.type}}.png">
+            </div>
+            <div class="repo-card-language">
+                {{repo.main_language}}
+            </div>
+        </div>
+    </div>
+</a>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock %}
