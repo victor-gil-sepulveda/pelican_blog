@@ -71,12 +71,12 @@ function process_bitbucket_repos(repos){
             }
             new_repo["name"] = name;
             new_repo["link"] = repo["links"]["html"];
-            description = repo["description"];
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum sit amet dolor eget auctor. Pellentesque vestibulum, sem ut eleifend iaculis, ex orci egestas dui, a fermentum libero eros vel velit. Proin eros dui, sagittis et maximus a, feugiat vel leo. Suspendisse pretium justo vel leo sed. "//repo["description"];
             if(!!description && description.length > 150){
                 description = description.substring(0,150)+"...";
             }
             new_repo["description"] = description;
-            new_repo["main_language"] = repo["language"];
+            new_repo["main_language"] = "fakalang";//repo["language"];
             new_repo["type"] = "bitbucket";
          	pruned_repos.push(new_repo);
          }

@@ -13,22 +13,28 @@
 {{#each repos}}
 <a href = "{{link}}"  target="blank" style="text-decoration: none;">
     <div class="repo-card">
-        <!-- <div class="repo-card-title">
+        <div class="repo-card-title">
             
             <div class="repo-card-title-element">
                 <h1>{{name}}</h1>
             </div>
-            
+            {{#if stars}}
             <div class="repo-card-title-element"> 
                 &#9734; {{stars}} 
             </div>
+            {{/if}}
         </div>
         <div class="repo-card-description">
             {{description}}
         </div>
-        <div class="repo-card-language">
-            {{main_language}}
-        </div>-->
+        <div class="repo-card-footer">
+            <div class="repo-card-repotype">
+                <img src="/theme/images/{{type}}.png">
+            </div>
+            <div class="repo-card-language">
+                {{main_language}}
+            </div>
+        </div>
     </div>
 </a>
 {{/each}} 

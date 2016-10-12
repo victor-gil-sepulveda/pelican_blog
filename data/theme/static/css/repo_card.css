@@ -48,10 +48,28 @@ vertical-align https://codepen.io/edge0703/pen/iHJuA */
     width:100%;
 }
 
-.repo-card-language {
-    position: relative;
-    float: right;
-    text-align: right;
+.repo-card-footer {
     height: 40px;
-    width:100%;
+    width: 100%;
+    display: inline-block;
+}
+
+.repo-card-language {
+    display: inline-block;
+    padding: 13px 0px 0px 0px;
+    text-align: right;
+    height: 30px;
+    width:70px;
+    float: right;
+    color: #aeaeae;
+    font-weight: bold;
+}
+
+.repo-card-repotype img {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 7px 0px;
+    height: 25px;
+    width:  25px;
+    float: left;
 }
