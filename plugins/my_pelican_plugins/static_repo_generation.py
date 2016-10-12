@@ -70,6 +70,7 @@ def get_repo_info(generator):
         print >> sys.stderr, "[ERROR] YOU MUST DEFINE THE REPO IDS IN THE SETTINGS FILE IF USING THIS PLUGIN !! "
 
 def register():
-    signals.generator_init.connect(get_repo_info)
+    # http://docs.getpelican.com/en/3.6.3/plugins.html
+    signals.all_generators_finalized.connect(get_repo_info)
 
     

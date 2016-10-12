@@ -6,6 +6,14 @@
 		<title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
 		<meta charset="utf-8" />
 		
+		<!-- Pure CSS -->
+		<!--[if lte IE 8]>
+            <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+        <!--<![endif]-->
+		
 		<!-- Fonts from google fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
@@ -13,9 +21,6 @@
 		
 		<!-- Twitter stuff -->
 		<script src="https://platform.twitter.com/widgets.js"></script>
-		
-		<!-- G+ stuff -->
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css" />
