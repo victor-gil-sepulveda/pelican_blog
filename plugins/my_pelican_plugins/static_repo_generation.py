@@ -27,7 +27,7 @@ def get_github_repos(user_id):
                 lang_json_text = urllib2.urlopen(repo["languages_url"]).read()
                 new_repo["all_languages"] = json.loads(lang_json_text)
             except:
-                print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ LANG INFO FOR GITHUB REPO: %s"%repo["name"]
+                print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ LANG INFO FOR GITHUB REPO: %s in %s "%(repo["name"], repo["languages_url"])
             new_repos.append(new_repo);
     except:
         print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ OR PROCESS GITHUB REPOSITORIES"
@@ -58,19 +58,19 @@ def get_bitbucket_repos(user_id):
     return new_repos
     
 def get_repo_info(generator):
-    if "GITHUB_USER" in generator.settings and "BITBUCKET_USER" in generator.settings:
+    try:
         github_repos = get_github_repos(generator.settings["GITHUB_USER"]);
         bitbucket_repos = get_bitbucket_repos(generator.settings["BITBUCKET_USER"])
         all_repos = []
         all_repos.extend(github_repos)
         all_repos.extend(bitbucket_repos)
         generator.context["repositories"] = all_repos
-    else:
-        generator.context["repositories"]
+    except:
+        generator.context["repositories"] = []
         print >> sys.stderr, "[ERROR] YOU MUST DEFINE THE REPO IDS IN THE SETTINGS FILE IF USING THIS PLUGIN !! "
 
 def register():
     # http://docs.getpelican.com/en/3.6.3/plugins.html
-    signals.all_generators_finalized.connect(get_repo_info)
+    signals.page_generator_finalized.connect(get_repo_info)
 
     

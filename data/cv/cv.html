@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<!-- Pure CSS -->
+		<!--[if lte IE 8]>
+            <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+        <!--<![endif]-->
+{% endblock head %}
+
+
+
+{% block content %}
+
+<div id="contents-page">
+    <div class="pure-g">
+        <img style ="border-radius: 50%;width:20%;height:20%;-webkit-filter: grayscale(100%); filter: grayscale(100%);" src="/theme/images/self_portrait.jpg">
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1-3">  </div>
+        <div class="pure-u-1-3">  
+            <div> <p style="text-align: middle;">V&iacute;ctor A. Gil Sep&uacute;lveda</p></div> 
+            <div> <p style="text-align: middle;">Born on June 19th of 1983 in Spain</p></div> 
+            <div> <p style="text-align: middle;">Download my CV</p></div> 
+        </div>
+        <div class="pure-u-1-3">  </div>
+    </div>
+    <div id = "cv-text">
+    
+        <h2> Education </h2>
+        First and foremost, I am a Computer Scientist (that was a 5 years career in Spain at that time). Then I coursed a two years Biomedical Engineering master. Finally I enrolled a PhD in Biomedicine. But sin importar el título, I remain an expert software developer 
+        
+        
+        <h2>Software development skills</h2>
+        
+        Software development - Design (from basic UML to some newer iterative methodologies like TDD)
+        Testing (unit testing, integration and regression tests in several languages), automation (ex. using vagrant), light scripting, 
+        
+        Always worked under Linux
+            
+        
+        C++ and Python
+        
+        Other languages
+            Java- carrera y Android more recently.
+            Learning new languages is easy, specially because most of the time it just means re. But I do not consider myself to have a good degree of expertise. 
+       
+        
+        DBs
+        sound Design (which if you make me do it in a paper I will do using UML, as we were tough in the faculty). at some point I have used SQLlite, mySQL and more recently PostgreSQL, including the creation of processes 
+        
+        
+        Data science
+        hobby
+        self-learning coursera, books
+        Data science, machine learning with special atention to clustering and PCA techniques (during my PhD), web scrapping using scrappy and perl XXX.
+        
+        you can find my repositories. Unfortunately the best works are not open source and it is currently used by http://nostrumbiodiscovery.com/ 
+
+
+        Work experience
+        
+        worked basicly for academia last 9 years a lately my role was the research software engineer (http://www.rse.ac.uk/who.html). What does a research software engineer do? 
+        the basic protocol is
+        understanding the background and the problem
+        find innovative algorithms/solutions to the problems
+        Develop the software implementing the new algorithms
+        writing research papers
+        
+        Were the deeveloping part is the most expensive
+        
+        
+        CV
+        expanded titles
+    </div>
+    
+</div>
+{% endblock %}

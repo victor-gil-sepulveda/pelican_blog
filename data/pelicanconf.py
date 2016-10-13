@@ -50,11 +50,12 @@ SOCIAL_ICONS_MENU = (
 PLUGINS = ['my_pelican_plugins.static_repo_generation',]
 GITHUB_USER = "victor-gil-sepulveda"
 BITBUCKET_USER = "victor_gil_sepulveda"
-DIRECT_TEMPLATES = ['index', 'categories', 'authors', 'archives', "repositories_static", "tags"]
+DIRECT_TEMPLATES = ['index', 'categories', 'authors', 'archives', "repositories_static", "tags", "cv"]
 LINKS = (
         ("Home", "/"),
         ("Tags", "/tags.html"),
-        ("Repos", "/repositories_static.html")
+        ("Repos", "/repositories_static.html"),
+        ("My CV", "/cv.html")
         )
 
 DISQUS_SITENAME = "thelostlibraryofagraphur"
@@ -66,6 +67,3 @@ STATIC_PATHS = [ # TODO : Robots.txt
 EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'}
 }
-
-#TEMPLATE_PAGES = {'theme/repositories_static.html': 'repositories.html'}
-

@@ -11,4 +11,4 @@ pip install pexpect # Must issue a Python3 related error. Not relevant for this 
 
 pip install livereload
 
-echo "export PYTHONPATH=/vagrant/plugins:$PYTHONPATH"
+echo "export PYTHONPATH=/vagrant/plugins:$PYTHONPATH" >> /home/vagrant/.bashrc
