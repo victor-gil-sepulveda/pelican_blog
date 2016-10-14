@@ -1,0 +1,75 @@
+.repo-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 28%; /* works only if parent width is explicitly defined!!*/
+    height: 150px;
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+    margin:  7px;
+}
+
+.repo-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.repo-card h1{
+    text-align: left;
+    font-size: 14px;
+}
+
+.repo-card-title {
+    float: left;
+    height: 40px;
+    width:100%;
+}
+
+/* Fake (pseudo) element, that enables 
+vertical-align https://codepen.io/edge0703/pen/iHJuA */
+.repo-card-title:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.repo-card-title-element {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px 2px;
+}
+
+.repo-card-description {
+    display: block;
+    position: relative;
+    float: left;
+    text-align: justify;
+    height:80px;
+    width:100%;
+}
+
+.repo-card-footer {
+    height: 40px;
+    width: 100%;
+    display: inline-block;
+}
+
+.repo-card-language {
+    display: inline-block;
+    padding: 13px 0px 0px 0px;
+    text-align: right;
+    height: 30px;
+    width:70px;
+    float: right;
+    color: #aeaeae;
+    font-weight: bold;
+}
+
+.repo-card-repotype img {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 7px 0px;
+    height: 25px;
+    width:  25px;
+    float: left;
+}
