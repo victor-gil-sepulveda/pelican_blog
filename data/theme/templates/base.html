@@ -39,7 +39,12 @@
         <script>
             $(document).ready(function(){
                 console.log("Sticking");
+                var FRONT_Z_INDEX = 9999;
                 $("#menu").stick_in_parent();
+                // We make the changes here so the can be undone easily
+                // by only detaching the function
+                $("#menu").css("z-index", FRONT_Z_INDEX);
+                $("#menu").css("background-color",  $(document.body).css("background-color"));
             });
         </script>
 
