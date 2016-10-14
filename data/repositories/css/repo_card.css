@@ -73,3 +73,12 @@ vertical-align https://codepen.io/edge0703/pen/iHJuA */
     width:  25px;
     float: left;
 }
+
+.repo-icon{
+    height: 25px;
+    width:  25px;
+    margin: 0px;
+    -ms-transform: translate(0px, 8px); /* IE 9 */
+    -webkit-transform: translate(0px, 8px); /* Safari */
+    transform: translate(0px, 8px);
+}

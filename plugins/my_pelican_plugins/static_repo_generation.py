@@ -60,7 +60,7 @@ def get_bitbucket_repos(user_id):
 def get_repo_info(generator):
     try:
         github_repos = [] #get_github_repos(generator.settings["GITHUB_USER"]);
-        bitbucket_repos = get_bitbucket_repos(generator.settings["BITBUCKET_USER"])
+        bitbucket_repos = [] #get_bitbucket_repos(generator.settings["BITBUCKET_USER"])
         all_repos = []
         all_repos.extend(github_repos)
         all_repos.extend(bitbucket_repos)

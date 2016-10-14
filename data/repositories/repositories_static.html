@@ -7,42 +7,60 @@
 {% block title %}PUBLIC REPOSITORIES{% endblock %}
 
 {% block content %}
-<h1> PUBLIC REPOSITORIES </h1>
-These are some of my public repositories. bitbucket usually
+<div id="contents-page" class="type-page hentry">
 
+    <div class="entry-meta">
+        <!-- <div class="comments"><a href="/pages/about.html#disqus_thread" title="Comment on About">Leave a comment</a></div> -->
+        <span class="cat-links"></span>
+    </div>
 
-you can find my repositories. Unfortunately the best works are not open source and it is currently used by http://nostrumbiodiscovery.com/
+    <div class="main">
+        <h2 class = "entry-title"> Public Repositories</h2>
 
-<div id="contents-page">
-{% if repositories %}
-{% for repo in repositories %}
-<a href = "{{repo.link}}"  target="blank" style="text-decoration: none;">
-    <div class="repo-card">
-        <div class="repo-card-title">
-            
-            <div class="repo-card-title-element">
-                <h1>{{repo.name}}</h1>
-            </div>
-            {% if repo.stars %}
-            <div class="repo-card-title-element"> 
-                &#9734; {{repo.stars}} 
-            </div>
+        <div class = "entry-content" >
+            <p>
+                Here you can find links to some of my open source projects. The code is hosted in Github
+                (<img class="repo-icon" src="{{SITE}}/theme/images/github.png">) and Bitbucket
+                (<img class="repo-icon" src="{{SITE}}/theme/images/bitbucket.png">).
+            </p>
+            <p>
+                Unfortunately, the biggest project in which I worked last years (C++) is not open source as it is
+                currently one of the keystones of <a href="http://nostrumbiodiscovery.com/" >Nostrum Biodiscovery </a> .
+            </p>
+        </div>
+        <div id = "filling" style="height: 30px"></div>
+        <div id="card-holder">
+            {% if repositories %}
+            {% for repo in repositories %}
+            <a href = "{{repo.link}}"  target="blank" style="text-decoration: none;">
+                <div class="repo-card">
+                    <div class="repo-card-title">
+
+                        <div class="repo-card-title-element">
+                            <h1>{{repo.name}}</h1>
+                        </div>
+                        {% if repo.stars %}
+                        <div class="repo-card-title-element">
+                            &#9734; {{repo.stars}}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="repo-card-description">
+                        {{repo.description}}
+                    </div>
+                    <div class="repo-card-footer">
+                        <div class="repo-card-repotype">
+                            <img src="/theme/images/{{repo.type}}.png">
+                        </div>
+                        <div class="repo-card-language">
+                            {{repo.main_language}}
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
             {% endif %}
         </div>
-        <div class="repo-card-description">
-            {{repo.description}}
-        </div>
-        <div class="repo-card-footer">
-            <div class="repo-card-repotype">
-                <img src="/theme/images/{{repo.type}}.png">
-            </div>
-            <div class="repo-card-language">
-                {{repo.main_language}}
-            </div>
-        </div>
     </div>
-</a>
-{% endfor %}
-{% endif %}
 </div>
 {% endblock %}
