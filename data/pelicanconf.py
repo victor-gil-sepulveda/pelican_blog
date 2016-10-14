@@ -54,7 +54,7 @@ DIRECT_TEMPLATES = ['index',
                     'categories', 
                     'authors', 
                     'archives', 
-                    #"repositories_static", 
+                    "repositories_static",
                     "tags", 
                     "cv"]
 LINKS = (
