@@ -39,10 +39,12 @@ then
     rm /home/vagrant/blog/theme/templates/cv.html
     rm /home/vagrant/blog/theme/static/images/self_portrait.jpg
     rm /home/vagrant/blog/theme/static/images/pdf-file.png
+    rm /home/vagrant/blog/theme/static/css/cv.css
 fi
 ln -s /vagrant/data/cv/cv.html /home/vagrant/blog/theme/templates/cv.html
 ln -s /vagrant/data/cv/images/self_portrait.jpg /home/vagrant/blog/theme/static/images/self_portrait.jpg
 ln -s /vagrant/data/cv/images/pdf-file.png /home/vagrant/blog/theme/static/images/pdf-file.png
+ln -s /vagrant/data/cv/css/cv.css /home/vagrant/blog/theme/static/css/cv.css
 
 # Repositories page files
 if [ ! -f /home/vagrant/blog/theme/templates/repositories_static.html ];

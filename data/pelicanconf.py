@@ -60,7 +60,7 @@ DIRECT_TEMPLATES = ['index',
 LINKS = (
         ("Home", "/"),
         ("Tags", "/tags.html"),
-#        ("Repos", "/repositories_static.html"),
+        ("Repos", "/repositories_static.html"),
         ("My CV", "/cv.html")
         )
 
