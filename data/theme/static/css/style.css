@@ -266,6 +266,15 @@ body {
 	text-decoration: none;
 	text-transform: uppercase;
 }
+h3.entry-title {
+	font-size: 15px;
+}
+h4.entry-title {
+	font-size: 15px;
+	text-transform: none;
+	text-decoration: underline;
+	font-weight: normal;
+}
 .entry-title a {
 	color: #666;
 	text-decoration: none;

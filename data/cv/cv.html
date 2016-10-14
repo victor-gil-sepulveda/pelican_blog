@@ -14,7 +14,7 @@
 
 {% block content %}
 
-<div id="contents-page">
+<div id="contents-page" class="type-page hentry">
     <div class="pure-g">
         <img style ="border-radius: 50%;width:20%;height:20%;-webkit-filter: grayscale(100%); filter: grayscale(100%);" src="/theme/images/self_portrait.jpg">
     </div>
@@ -27,52 +27,116 @@
         </div>
         <div class="pure-u-1-3">  </div>
     </div>
-    <div id = "cv-text">
+    <div id = "cv-text" class ="main">
     
-        <h2> Education </h2>
-        First and foremost, I am a Computer Scientist (that was a five years career in Spain at that time). Then I coursed a two years Biomedical Engineering master. Finally I enrolled a PhD in Biomedicine wich lasted six years. 
+        <h2 class = "entry-title"> Education </h2>
         
-        <h2>Software development skills</h2>
+        <div class = "entry-content">
+            <p>
+                Studying has been a great part of my life. Driven by the need of "doing things" and my recently
+                found interest on computers, I coursed a Computer Engineering bachelor degree (that was a five years 
+                at that time!). Not so long after this, I started a two years Biomedical Engineering master. This 
+                opened me the doors to enroll a PhD in Biomedicine that I have currently finished.
+            </p>
+            <p>
+                In the world of software developing keeping oneself skills current is of utmost importance. This is the
+                reason why, nowadays, I am still studying.  I divide my efforts in two fronts: sharpening the skills I
+                already have, and learning new languages/techniques/methodologies. I am trying to achieve this by reading
+                books and enrolling online courses.
+            </p>
+        </div>
         
-        Software development - Design (from basic UML to some newer iterative methodologies like TDD)
-        Testing (unit testing, integration and regression tests in several languages), automation (ex. using vagrant), light scripting, 
+        <h2 class = "entry-title">Work experience</h2>
+        <div class = "entry-content">
+            <p>
+                These last 9 years I have worked almost exclusively for academic institutions (once at the
+                <a href="http://www.crg.eu/" target="_blank">CRG</a>, twice at the
+                <a href="http://www.bsc.es/" target="_blank">BSC</a>), always as a
+                <a href="http://www.rse.ac.uk/who.html" target="_blank">Research Software Engineer</a>. This role has been
+                coined very recently to encompass those professionals,
+                usually working in academia, who are able to perform as both researchers and Software Developers ( click
+                <a href="http://www.rse.ac.uk/who.html" target="_blank"> here </a> if you want to know more!). In my case,
+                the role included (but was not limited to):
+            </p>
+            <ul> 
+                <li> Understanding the biophysical/biochemistry/mathematical background of a problem </li>
+                <li> Look for algorithms/software to solve the problem </li>
+                <li> Improve the algorithms or invent new ones </li>
+                <li> Develop the software implementing the new algorithms (the part that takes most of your time)</li>
+                <li> Writing research papers about the new algorithms themselves or their use </li>
+            </ul>
+        </div>
+
+        <h2 class = "entry-title">Skills</h2>
+        <div class = "entry-content">
+            <h3 class = "entry-title">I am a fully trained Software Engineer</h3>
+            <p>
+                Which means I can go over all the stages of a product development, including:
+            </p>
+
+            <ul>
+                <li> Initial design using UML </li>
+                <li> Iterative design and development (ex. with TDD) </li>
+                <li> Testing (unit testing, integration and regression tests in several languages)</li>
+                <li> Task automation (ex. using vagrant)</li>
+                <li> ... And of course the development of the code itself</li>
+            </ul>
+
+            <h4 class = "entry-title">Main programming languages</h4>
+            <p>
+                These last 6 years I have been programming using mostly C++ and Python. This also included the
+                development of <a href="https://en.wikipedia.org/wiki/Supercomputer" target="_blank">HPC</a>-ready code
+                for multicore, manycore (ex. GPU) and distributed architectures, as well as C Python extensions.
+            </p>
+
+            <h4 class = "entry-title">Other programming languages</h4>
+            <p>
+                During my life I have used several other languages like Java (learned during my faculty years and used
+                again for personal Android projects), Javascript (+ HTML, CSS) and R.
+            </p>
+            <p>
+                I have always worked under Linux, which means I am also able to do some light Bash and Perl scripting if
+                needed (for more complex scripting I usually prefer Python).
+            </p>
+            <p>
+                Learning and using new languages is easy for me, specially because most of the time it just means
+                remembering how they work!
+            </p>
+
+            <h4 class = "entry-title">RDBMS and SQL</h4>
+            <p>
+                I am able to design sound databases using UML (as we were taught in the faculty) and descriptive
+                methodologies as well as use SQL or ORMs to implement them.
+            </p>
+            <p>
+                At some point in my life I have used SQLite, mySQL and (more recently) PostgreSQL. I am able to code stored
+                procedures using PL/pgSQL, similar to Oracle's PL/SQL.
+            </p>
+
+            <h4 class = "entry-title">Data Science</h4>
+            <p>
+                During my PhD I had a first contact with machine learning algorithms (basically cluster analysis in all
+                its forms and PCA analysis). Since then I have been very interested on learning more about Data Science
+                and Machine Learning. To this end I have enrolled several
+                <a href="https://www.coursera.org/" target="_blank">Coursera</a> courses and read some books on the
+                topic.
+            </p>
+
+            <h3 class = "entry-title">I am a fully trained Researcher</h3>
+            <p>
+                Which means I am able to work individually or as part of a group in order to learn more about a problem
+                in order to find a solution to it.
+            </p>
+            <p>
+                And I never desist unless I am told to.
+            </p>
+        </div>
         
-        Always worked under Linux
-            
+
         
-        C++ and Python
-        
-        Other languages
-            Java- carrera y Android more recently.
-            Learning new languages is easy, specially because most of the time it just means re. But I do not consider myself to have a good degree of expertise. 
-       
-        
-        DBs
-        sound Design (which if you make me do it in a paper I will do using UML, as we were tough in the faculty). at some point I have used SQLlite, mySQL and more recently PostgreSQL, including the creation of processes 
-        
-        
-        Data science
-        hobby
-        self-learning coursera, books
-        Data science, machine learning with special atention to clustering and PCA techniques (during my PhD), web scrapping using scrappy and perl XXX.
-        
-        you can find my repositories. Unfortunately the best works are not open source and it is currently used by http://nostrumbiodiscovery.com/ 
 
 
-        Work experience
-        
-        worked basicly for academia last 9 years a lately my role was the research software engineer (http://www.rse.ac.uk/who.html). What does a research software engineer do? 
-        the basic protocol is
-        understanding the background and the problem
-        find innovative algorithms/solutions to the problems
-        Develop the software implementing the new algorithms
-        writing research papers
-        
-        Were the deeveloping part is the most expensive
-        
-        
-        CV
-        expanded titles
+
     </div>
     
 </div>
