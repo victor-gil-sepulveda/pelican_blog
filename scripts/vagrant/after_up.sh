@@ -21,7 +21,7 @@ rm /home/vagrant/blog/pelicanconf.py
 ln -s /vagrant/data/pelicanconf.py /home/vagrant/blog/pelicanconf.py
 
 # CV page files
-if [ -f /home/vagrant/blog/theme/templates/cv.html ];
+if [ ! -f /home/vagrant/blog/theme/templates/cv.html ];
 then
     ln -s /vagrant/data/cv/cv.html /home/vagrant/blog/theme/templates/cv.html
     ln -s /vagrant/data/cv/images/self_portrait.jpg /home/vagrant/blog/theme/static/images/self_portrait.jpg
@@ -29,7 +29,7 @@ then
 fi
 
 # Repositories page files
-if [ -f /home/vagrant/blog/theme/templates/repositories.html ];
+if [ ! -f /home/vagrant/blog/theme/templates/repositories.html ];
 then
     ln -s /vagrant/data/repositories/repositories.html /home/vagrant/blog/theme/templates/repositories.html
     ln -s /vagrant/data/repositories/repositories_static.html /home/vagrant/blog/theme/templates/repositories_static.html
