@@ -54,12 +54,14 @@ then
     rm /home/vagrant/blog/theme/static/js/github_repos.html
     rm /home/vagrant/blog/theme/static/images/bitbucket.png
     rm /home/vagrant/blog/theme/static/images/github.png
+    rm /home/vagrant/blog/theme/static/css/repo_card.css
 fi
 ln -s /vagrant/data/repositories/repositories.html /home/vagrant/blog/theme/templates/repositories.html
 ln -s /vagrant/data/repositories/repositories_static.html /home/vagrant/blog/theme/templates/repositories_static.html
 ln -s /vagrant/data/repositories/js/github_repos.js /home/vagrant/blog/theme/static/js/github_repos.html
 ln -s /vagrant/data/repositories/images/bitbucket.png /home/vagrant/blog/theme/static/images/bitbucket.png
 ln -s /vagrant/data/repositories/images/github.png /home/vagrant/blog/theme/static/images/github.png
+ln -s /vagrant/data/repositories/css/repo_card.css /home/vagrant/blog/theme/static/css/repo_card.css
 
 EOF
 
