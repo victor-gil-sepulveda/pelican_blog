@@ -202,8 +202,8 @@ body {
 	float: left;
 	line-height: 175%;
 	padding: 29px 5px 15px 15px;
-	text-align: left;
-	width: 580px;
+	text-align: justify;
+	width: 100%;
 }
 .hentry .entry-meta {
 	font-family: 'Oswald', Helvetica, Arial, sans-serif;
