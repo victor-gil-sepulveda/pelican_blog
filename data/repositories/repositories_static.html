@@ -2,47 +2,120 @@
 {% block head %}
 {{ super() }}
 <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/repo_card.css" />
+
+{%if REPOS_DO_CHART %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+<script>
+    //http://stackoverflow.com/questions/1327756/can-you-have-multiple-document-readyfunction-sections
+    var dynamicColors = function() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
+    $(document).ready(function(){
+        var ctx = document.getElementById("chart");
+
+        // Create the data and labels
+        {# var data = [{% if language_stats_values %} {% for langval in language_stats_values %} {{langval}}, {% endfor %} {% endif %}]
+        var labels = [{% if language_stats_labels %} {% for lang in language_stats_labels %} "{{lang}}", {% endfor %} {% endif %}] #}
+
+        var data = [  0.687890909353,  0.0110681320791,  28.5305604277,  6.1828124633,  54.2828598519,
+        0.00018969069036,  3.07655067983,  1.58380430264,  0.0155951323749,  0.000125750008216,  0.0645758262532,
+        0.0648465084743,  0.0647825677921,  5.43433775762,  ]
+        var labels = [  "C",  "Shell",  "HTML",  "Python",  "JavaScript",  "VimL",  "C++",  "TeX",
+        "Tcl",  "Batchfile",  "Cuda",  "Mathematica",  "R",  "CSS"  ]
+
+        var chart_data = {
+            labels: labels,
+            datasets: [
+                {
+                    data:data,
+                    backgroundColor: labels.map(dynamicColors)
+                }],
+        };
+
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: chart_data,
+            label: ["Percentage of bytes per language"]/*,
+            options: options*/
+        });
+    });
+</script>
+{% endif %}
 {% endblock head %}
 
 {% block title %}PUBLIC REPOSITORIES{% endblock %}
 
 {% block content %}
-<h1> PUBLIC REPOSITORIES </h1>
-These are some of my public repositories. bitbucket usually
+<div id="contents-page" class="type-page hentry">
 
+    <div class="entry-meta">
+        <!-- <div class="comments"><a href="/pages/about.html#disqus_thread" title="Comment on About">Leave a comment</a></div> -->
+        <span class="cat-links"></span>
+    </div>
 
-you can find my repositories. Unfortunately the best works are not open source and it is currently used by http://nostrumbiodiscovery.com/
+    <div class="main">
+        <h2 class = "entry-title"> Public Repositories</h2>
 
-<div id="contents-page">
-{% if repositories %}
-{% for repo in repositories %}
-<a href = "{{repo.link}}"  target="blank" style="text-decoration: none;">
-    <div class="repo-card">
-        <div class="repo-card-title">
-            
-            <div class="repo-card-title-element">
-                <h1>{{repo.name}}</h1>
-            </div>
-            {% if repo.stars %}
-            <div class="repo-card-title-element"> 
-                &#9734; {{repo.stars}} 
-            </div>
+        <div class = "entry-content" >
+            <p>
+                Here you can find links to some of my open source projects. The code is hosted in Github
+                (<img class="repo-icon" src="{{SITE}}/theme/images/github.png">) and Bitbucket
+                (<img class="repo-icon" src="{{SITE}}/theme/images/bitbucket.png">).
+            </p>
+            <p>
+                Unfortunately, the biggest project in which I worked last years (C++) is not open source as it is
+                currently one of the keystones of <a href="http://nostrumbiodiscovery.com/" >Nostrum Biodiscovery </a> .
+            </p>
+        </div>
+
+        {% if REPOS_DO_CHART %}
+        <h3 class = "entry-title"> Language statistics </h3>
+        <div >
+            <canvas class="repo-lang-chart" id = "chart" ></canvas>
+        </div>
+        {% endif %}
+
+        <h3 class = "entry-title"> Repositories</h3>
+        <div id="card-holder">
+            {% if repositories %}
+            {% for repo in repositories %}
+            <a href = "{{repo.link}}"  target="blank" style="text-decoration: none;">
+                <div class="repo-card">
+                    <div class="repo-card-title">
+
+                        <div class="repo-card-title-element">
+                            <h1>{{repo.name}}</h1>
+                        </div>
+                        {% if repo.stars %}
+                        <div class="repo-card-title-element">
+                            &#9734; {{repo.stars}}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="repo-card-description">
+                        {{repo.description}}
+                    </div>
+                    <div class="repo-card-footer">
+                        <div class="repo-card-repotype">
+                            <img src="/theme/images/{{repo.type}}.png">
+                        </div>
+                        <div class="repo-card-language">
+                            {{repo.main_language}}
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
             {% endif %}
-        </div>
-        <div class="repo-card-description">
-            {{repo.description}}
-        </div>
-        <div class="repo-card-footer">
-            <div class="repo-card-repotype">
-                <img src="/theme/images/{{repo.type}}.png">
-            </div>
-            <div class="repo-card-language">
-                {{repo.main_language}}
-            </div>
+            {% if not REPO_DO_PROCESS %}
+                Repository information not parsed.
+            {% endif %}
+
         </div>
     </div>
-</a>
-{% endfor %}
-{% endif %}
 </div>
 {% endblock %}

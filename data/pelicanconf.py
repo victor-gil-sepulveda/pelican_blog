@@ -47,14 +47,13 @@ SOCIAL_ICONS_MENU = (
             ("Google+", "theme/images/google-plus.png", "https://plus.google.com/u/0/110041683601844851417"),
             )
 
-#PLUGINS = ['my_pelican_plugins.static_repo_generation',]
-GITHUB_USER = "victor-gil-sepulveda"
-BITBUCKET_USER = "victor_gil_sepulveda"
+PLUGINS = ['my_pelican_plugins.static_repo_generation',]
+
 DIRECT_TEMPLATES = ['index', 
                     'categories', 
                     'authors', 
                     'archives', 
-                    #"repositories_static", 
+                    "repositories_static",
                     "tags", 
                     "cv"]
 LINKS = (
@@ -75,3 +74,9 @@ EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/CV.pdf' : {'path': 'CV.pdf'}
 }
+
+
+REPOS_DO_PROCESS = False
+REPOS_DO_CHART = False
+REPOS_GITHUB_USER = "victor-gil-sepulveda"
+REPOS_BITBUCKET_USER = "victor_gil_sepulveda"

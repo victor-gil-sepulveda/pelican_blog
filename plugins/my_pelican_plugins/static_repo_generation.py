@@ -12,7 +12,7 @@ def get_github_repos(user_id):
         for repo in repos:
             new_repo = {}
             name =  repo["name"]
-            if len(name) >20:
+            if len(name) > 20:
                 name = name[0:20]+"..."
             new_repo["name"] = name
             new_repo["link"] = repo["html_url"]
@@ -32,7 +32,7 @@ def get_github_repos(user_id):
     except:
         print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ OR PROCESS GITHUB REPOSITORIES"
     return new_repos
-        
+
 def get_bitbucket_repos(user_id):
     url = "https://api.bitbucket.org/2.0/repositories/{}".format(user_id)
     new_repos = []
@@ -45,7 +45,7 @@ def get_bitbucket_repos(user_id):
             if len(name) >20:
                 name = name[0:20]+"..."
             new_repo["name"] = name
-            new_repo["link"] = repo["links"]["html"];
+            new_repo["link"] = repo["links"]["html"]
             description = repo["description"]
             if description is not None and len(description) > 150:
                 description = description[0:150]+"..."
@@ -56,18 +56,49 @@ def get_bitbucket_repos(user_id):
     except:
         print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ OR PROCESS BITBUCKET REPOSITORIES"
     return new_repos
-    
+
+def add_language_stats(stats_object, new_stats):
+    if new_stats is not None:
+        for lang in new_stats:
+            if not lang in stats_object:
+                stats_object[lang] = 0
+            stats_object[lang] += new_stats[lang]
+
+def process_stats(stats_object):
+    sum = 0.0
+    for lang in stats_object:
+        sum += stats_object[lang]
+    if sum != 0.0:
+        for lang in stats_object:
+            stats_object[lang] /= sum
+            stats_object[lang] *= 100
+        # Cluster the "other" languages
+
 def get_repo_info(generator):
-    try:
-        github_repos = get_github_repos(generator.settings["GITHUB_USER"]);
-        bitbucket_repos = get_bitbucket_repos(generator.settings["BITBUCKET_USER"])
-        all_repos = []
-        all_repos.extend(github_repos)
-        all_repos.extend(bitbucket_repos)
-        generator.context["repositories"] = all_repos
-    except:
-        generator.context["repositories"] = []
-        print >> sys.stderr, "[ERROR] YOU MUST DEFINE THE REPO IDS IN THE SETTINGS FILE IF USING THIS PLUGIN !! "
+    all_repos = []
+    if generator.settings["REPOS_DO_PROCESS"]:
+        try:
+            github_repos = get_github_repos(generator.settings["REPOS_GITHUB_USER"]);
+            bitbucket_repos = get_bitbucket_repos(generator.settings["REPOS_BITBUCKET_USER"])
+            all_repos.extend(github_repos)
+            all_repos.extend(bitbucket_repos)
+            generator.context["repositories"] = all_repos
+        except KeyError:
+            generator.context["repositories"] = []
+            print >> sys.stderr, "[ERROR] YOU MUST DEFINE THE REPO IDS IN THE SETTINGS FILE IF USING THIS PLUGIN !! "
+
+        try:
+            language_stats = {}
+            for repo in all_repos:
+                if "all_languages" in repo:
+                    add_language_stats(language_stats, repo["all_languages"])
+            process_stats(language_stats)
+            generator.context["language_stats_labels"] = language_stats.keys()
+            generator.context["language_stats_values"] = [language_stats[lang] for lang in language_stats.keys()]
+        except:
+            generator.context["language_stats_labels"] = []
+            generator.context["language_stats_values"] = []
+            print >> sys.stderr, "[ERROR] IMPOSSIBLE TO PROCESS LANGUAGE STATISTICS "
 
 def register():
     # http://docs.getpelican.com/en/3.6.3/plugins.html
