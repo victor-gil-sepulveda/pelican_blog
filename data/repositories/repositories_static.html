@@ -5,14 +5,41 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 <script>
     //http://stackoverflow.com/questions/1327756/can-you-have-multiple-document-readyfunction-sections
+    var dynamicColors = function() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
     $(document).ready(function(){
+        var ctx = document.getElementById("chart");
+
         // Create the data and labels
         {# var data = [{% if language_stats_values %} {% for langval in language_stats_values %} {{langval}}, {% endfor %} {% endif %}]
-        var labels = [{% if language_stats_labels %} {% for lang in language_stats_labels %} {{lang}}, {% endfor %} {% endif %}] #}
+        var labels = [{% if language_stats_labels %} {% for lang in language_stats_labels %} "{{lang}}", {% endfor %} {% endif %}] #}
 
-        var data = [  0.687890909353,  0.0110681320791,  28.5305604277,  6.1828124633,  54.2828598519,  0.00018969069036,  3.07655067983,  1.58380430264,  0.0155951323749,  0.000125750008216,  0.0645758262532,  0.0648465084743,  0.0647825677921,  5.43433775762,  ]
-        var labels = [  C,  Shell,  HTML,  Python,  JavaScript,  VimL,  C++,  TeX,  Tcl,  Batchfile,  Cuda,  Mathematica,  R,  CSS,  ]
+        var data = [  0.687890909353,  0.0110681320791,  28.5305604277,  6.1828124633,  54.2828598519,
+        0.00018969069036,  3.07655067983,  1.58380430264,  0.0155951323749,  0.000125750008216,  0.0645758262532,
+        0.0648465084743,  0.0647825677921,  5.43433775762,  ]
+        var labels = [  "C",  "Shell",  "HTML",  "Python",  "JavaScript",  "VimL",  "C++",  "TeX",
+        "Tcl",  "Batchfile",  "Cuda",  "Mathematica",  "R",  "CSS"  ]
 
+        var chart_data = {
+            labels: labels,
+            datasets: [
+                {
+                    data:data,
+                    backgroundColor: labels.map(dynamicColors)
+                }],
+        };
+
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: chart_data,
+            label: ["Percentage of bytes per language"]/*,
+            options: options*/
+        });
     });
 </script>
 {% endblock head %}
@@ -42,22 +69,11 @@
             </p>
         </div>
         <h3 class = "entry-title"> Language statistics </h3>
-        <canvas id = "chart" width="200px" height="300px"></canvas>
-
-        <div class = "entry-content" >
-            <p>
-                Here you can find links to some of my open source projects. The code is hosted in Github
-                (<img class="repo-icon" src="{{SITE}}/theme/images/github.png">) and Bitbucket
-                (<img class="repo-icon" src="{{SITE}}/theme/images/bitbucket.png">).
-            </p>
-            <p>
-                Unfortunately, the biggest project in which I worked last years (C++) is not open source as it is
-                currently one of the keystones of <a href="http://nostrumbiodiscovery.com/" >Nostrum Biodiscovery </a> .
-            </p>
+        <div width="50px" height="70px" style = "padding-bottom: 50px">
+        <canvas id = "chart" ></canvas>
         </div>
 
-
-        <div id = "filling" style="height: 30px"></div>
+        <h3 class = "entry-title"> Repositories</h3>
         <div id="card-holder">
             {% if repositories %}
             {% for repo in repositories %}
