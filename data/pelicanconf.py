@@ -14,7 +14,9 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
+FEED_DOMAIN = None
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
+FEED_ALL_RSS = 'feeds/all.rss.xml'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
@@ -40,7 +42,7 @@ DISPLAY_PAGES_ON_MENU = True
 DELETE_OUTPUT_DIRECTORY = False
 
 SOCIAL_ICONS_MENU = (
-            ("Feed", "theme/images/feed.png", ""),
+            ("Feed", "theme/images/feed.png", "feeds/all.atom.xml"),
             ("Contact", "theme/images/contact.png", "mailto:victor.gil.sepulveda@gmail.com"),
             ("Twitter", "theme/images/twitter.png", "https://twitter.com/intent/follow?screen_name=vgilsep"),
             ("LinkedIn", "theme/images/linked-in.png", "https://es.linkedin.com/in/víctor-a-gil-4509b0115"),
