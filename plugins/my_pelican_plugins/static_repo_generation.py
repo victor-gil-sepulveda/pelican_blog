@@ -77,8 +77,8 @@ def process_stats(stats_object):
 def get_repo_info(generator):
     all_repos = []
     try:
-        github_repos = get_github_repos(generator.settings["GITHUB_USER"]);
-        bitbucket_repos = get_bitbucket_repos(generator.settings["BITBUCKET_USER"])
+        github_repos = []#get_github_repos(generator.settings["GITHUB_USER"]);
+        bitbucket_repos = []#get_bitbucket_repos(generator.settings["BITBUCKET_USER"])
         all_repos.extend(github_repos)
         all_repos.extend(bitbucket_repos)
         generator.context["repositories"] = all_repos

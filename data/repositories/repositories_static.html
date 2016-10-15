@@ -10,6 +10,14 @@
         var data = [{% if language_stats_values %} {% for langval in language_stats_values %} {{langval}}, {% endfor %} {% endif %}]
         var labels = [{% if language_stats_labels %} {% for lang in language_stats_labels %} {{lang}}, {% endfor %} {% endif %}]
 
+    //http://stackoverflow.com/questions/1327756/can-you-have-multiple-document-readyfunction-sections
+    $(document).ready(function(){
+        // Create the data and labels
+        var data = [  0.687890909353,  0.0110681320791,  28.5305604277,  6.1828124633,  54.2828598519,  0.00018969069036,  3.07655067983,  1.58380430264,  0.0155951323749,  0.000125750008216,  0.0645758262532,  0.0648465084743,  0.0647825677921,  5.43433775762,  ]
+        var labels = [  C,  Shell,  HTML,  Python,  JavaScript,  VimL,  C++,  TeX,  Tcl,  Batchfile,  Cuda,  Mathematica,  R,  CSS,  ]
+
+
+    });
 
     });
 </script>
