@@ -48,8 +48,7 @@ SOCIAL_ICONS_MENU = (
             )
 
 PLUGINS = ['my_pelican_plugins.static_repo_generation',]
-GITHUB_USER = "victor-gil-sepulveda"
-BITBUCKET_USER = "victor_gil_sepulveda"
+
 DIRECT_TEMPLATES = ['index', 
                     'categories', 
                     'authors', 
@@ -75,3 +74,9 @@ EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/CV.pdf' : {'path': 'CV.pdf'}
 }
+
+
+REPOS_DO_PROCESS = False
+REPOS_DO_CHART = False
+REPOS_GITHUB_USER = "victor-gil-sepulveda"
+REPOS_BITBUCKET_USER = "victor_gil_sepulveda"

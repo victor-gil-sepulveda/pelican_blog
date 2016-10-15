@@ -12,7 +12,7 @@ def get_github_repos(user_id):
         for repo in repos:
             new_repo = {}
             name =  repo["name"]
-            if len(name) >20:
+            if len(name) > 20:
                 name = name[0:20]+"..."
             new_repo["name"] = name
             new_repo["link"] = repo["html_url"]
@@ -76,23 +76,29 @@ def process_stats(stats_object):
 
 def get_repo_info(generator):
     all_repos = []
-    try:
-        github_repos = []#get_github_repos(generator.settings["GITHUB_USER"]);
-        bitbucket_repos = []#get_bitbucket_repos(generator.settings["BITBUCKET_USER"])
-        all_repos.extend(github_repos)
-        all_repos.extend(bitbucket_repos)
-        generator.context["repositories"] = all_repos
-    except:
-        generator.context["repositories"] = []
-        print >> sys.stderr, "[ERROR] YOU MUST DEFINE THE REPO IDS IN THE SETTINGS FILE IF USING THIS PLUGIN !! "
+    if generator.settings["REPOS_DO_PROCESS"]:
+        try:
+            github_repos = get_github_repos(generator.settings["REPOS_GITHUB_USER"]);
+            bitbucket_repos = get_bitbucket_repos(generator.settings["REPOS_BITBUCKET_USER"])
+            all_repos.extend(github_repos)
+            all_repos.extend(bitbucket_repos)
+            generator.context["repositories"] = all_repos
+        except KeyError:
+            generator.context["repositories"] = []
+            print >> sys.stderr, "[ERROR] YOU MUST DEFINE THE REPO IDS IN THE SETTINGS FILE IF USING THIS PLUGIN !! "
 
-    language_stats = {}
-    for repo in all_repos:
-        if "all_languages" in repo:
-            add_language_stats(language_stats, repo["all_languages"])
-    process_stats(language_stats)
-    generator.context["language_stats_labels"] = language_stats.keys()
-    generator.context["language_stats_values"] = [language_stats[lang] for lang in language_stats.keys()]
+        try:
+            language_stats = {}
+            for repo in all_repos:
+                if "all_languages" in repo:
+                    add_language_stats(language_stats, repo["all_languages"])
+            process_stats(language_stats)
+            generator.context["language_stats_labels"] = language_stats.keys()
+            generator.context["language_stats_values"] = [language_stats[lang] for lang in language_stats.keys()]
+        except:
+            generator.context["language_stats_labels"] = []
+            generator.context["language_stats_values"] = []
+            print >> sys.stderr, "[ERROR] IMPOSSIBLE TO PROCESS LANGUAGE STATISTICS "
 
 def register():
     # http://docs.getpelican.com/en/3.6.3/plugins.html

@@ -2,6 +2,8 @@
 {% block head %}
 {{ super() }}
 <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/repo_card.css" />
+
+{%if REPOS_DO_CHART %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 <script>
     //http://stackoverflow.com/questions/1327756/can-you-have-multiple-document-readyfunction-sections
@@ -42,6 +44,7 @@
         });
     });
 </script>
+{% endif %}
 {% endblock head %}
 
 {% block title %}PUBLIC REPOSITORIES{% endblock %}
@@ -68,10 +71,13 @@
                 currently one of the keystones of <a href="http://nostrumbiodiscovery.com/" >Nostrum Biodiscovery </a> .
             </p>
         </div>
+
+        {% if REPOS_DO_CHART %}
         <h3 class = "entry-title"> Language statistics </h3>
         <div >
             <canvas class="repo-lang-chart" id = "chart" ></canvas>
         </div>
+        {% endif %}
 
         <h3 class = "entry-title"> Repositories</h3>
         <div id="card-holder">
@@ -105,6 +111,10 @@
             </a>
             {% endfor %}
             {% endif %}
+            {% if not REPO_DO_PROCESS %}
+                Repository information not parsed.
+            {% endif %}
+
         </div>
     </div>
 </div>
