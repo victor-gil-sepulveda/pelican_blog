@@ -6,11 +6,8 @@ AUTHOR = u'Víctor A. Gil'
 SITENAME = u'The lost library of Agraphur'
 SITESUBTITLE = u'Pieces from a whole'
 SITEURL = '' # for correct feed generation
-
 PATH = 'content'
-
 TIMEZONE = 'Europe/Paris'
-
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
@@ -22,12 +19,6 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Blogroll
-#LINKS = (,)
-
-# Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 10
 
@@ -75,10 +66,12 @@ STATIC_PATHS = [ # TODO : Robots.txt
 EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/CV.pdf' : {'path': 'CV.pdf'}
-}
 
+}
 
 REPOS_DO_PROCESS = False
 REPOS_DO_CHART = False
 REPOS_GITHUB_USER = "victor-gil-sepulveda"
 REPOS_BITBUCKET_USER = "victor_gil_sepulveda"
+
+GOOGLE_ANALYTICS = "UA-52604711-1"
