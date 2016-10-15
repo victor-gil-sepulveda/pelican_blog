@@ -9,6 +9,8 @@
         // Create the data and labels
         var data = [{% if language_stats_values %} {% for langval in language_stats_values %} {{langval}}, {% endfor %} {% endif %}]
         var labels = [{% if language_stats_labels %} {% for lang in language_stats_labels %} {{lang}}, {% endfor %} {% endif %}]
+
+
     });
 </script>
 {% endblock head %}
@@ -37,6 +39,22 @@
                 currently one of the keystones of <a href="http://nostrumbiodiscovery.com/" >Nostrum Biodiscovery </a> .
             </p>
         </div>
+        <h3 class = "entry-title"> Language statistics </h3>
+        <canvas id = "chart" width="200px" height="300px"></canvas>
+
+        <div class = "entry-content" >
+            <p>
+                Here you can find links to some of my open source projects. The code is hosted in Github
+                (<img class="repo-icon" src="{{SITE}}/theme/images/github.png">) and Bitbucket
+                (<img class="repo-icon" src="{{SITE}}/theme/images/bitbucket.png">).
+            </p>
+            <p>
+                Unfortunately, the biggest project in which I worked last years (C++) is not open source as it is
+                currently one of the keystones of <a href="http://nostrumbiodiscovery.com/" >Nostrum Biodiscovery </a> .
+            </p>
+        </div>
+
+
         <div id = "filling" style="height: 30px"></div>
         <div id="card-holder">
             {% if repositories %}
