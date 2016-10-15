@@ -202,7 +202,7 @@ body {
 	float: left;
 	line-height: 175%;
 	padding: 29px 5px 15px 15px;
-	text-align: justify;
+	//text-align: justify;
 	width: 100%;
 }
 .hentry .entry-meta {
@@ -298,7 +298,7 @@ blockquote {
 	font-family: Georgia, Arial, Helvetica, sans-serif;
 	font-size: 15px;
 	padding: 10px;
-	text-align: justify;
+	//text-align: justify;
 }
 a {
 	color: #000;

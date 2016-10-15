@@ -70,24 +70,8 @@ def new_page(title, author, summary):
 
 
 @manage.subcommand(description='Removes symlinks')
-def remove_symlinks(title, author, summary):
-    today = datetime.today()
-    os.system("mkdir -p content/pages")
-    slug = title.lower().strip().replace(' ', '-')
-    f_create = "content/pages/{}.rst".format(slug)
-    t = load_template("new_page.template").format(title=title,
-                                                  hashes='#' * len(title),
-                                                  year=today.year,
-                                                  month=today.month,
-                                                  day=today.day,
-                                                  hour=today.hour,
-                                                  minute=today.minute,
-                                                  slug=slug,
-                                                  author = author,
-                                                  summary = summary)
-    with open(f_create, 'w') as w:
-        w.write(t)
-    clip.echo('Page created -> {}'.format(f_create))
+def remove_symlinks():
+    os.system("find -type l -delete")
 
 if __name__ == '__main__':
     try:
