@@ -92,7 +92,6 @@ def get_repo_info(generator):
             all_repos.extend(bitbucket_repos)
             generator.context["repositories"] = all_repos
         except KeyError:
-            generator.context["repositories"] = []
             print >> sys.stderr, "[ERROR] YOU MUST DEFINE THE REPO IDS IN THE SETTINGS FILE IF USING THIS PLUGIN !! "
 
         try:

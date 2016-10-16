@@ -82,39 +82,37 @@
         <h3 class = "entry-title"> Repositories</h3>
         <div id="card-holder">
             {% if repositories %}
-            {% for repo in repositories %}
-            <a href = "{{repo.link}}"  target="blank" style="text-decoration: none;">
-                <div class="repo-card">
-                    <div class="repo-card-title">
+                {% for repo in repositories %}
+                <a href = "{{repo.link}}"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
 
-                        <div class="repo-card-title-element">
-                            <h1>{{repo.name}}</h1>
+                            <div class="repo-card-title-element">
+                                <h1>{{repo.name}}</h1>
+                            </div>
+                            {% if repo.stars %}
+                            <div class="repo-card-title-element">
+                                &#9734; {{repo.stars}}
+                            </div>
+                            {% endif %}
                         </div>
-                        {% if repo.stars %}
-                        <div class="repo-card-title-element">
-                            &#9734; {{repo.stars}}
+                        <div class="repo-card-description">
+                            {{repo.description}}
                         </div>
-                        {% endif %}
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/{{repo.type}}.png">
+                            </div>
+                            <div class="repo-card-language">
+                                {{repo.main_language}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="repo-card-description">
-                        {{repo.description}}
-                    </div>
-                    <div class="repo-card-footer">
-                        <div class="repo-card-repotype">
-                            <img src="/theme/images/{{repo.type}}.png">
-                        </div>
-                        <div class="repo-card-language">
-                            {{repo.main_language}}
-                        </div>
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-            {% endif %}
-            {% if not REPO_DO_PROCESS %}
+                </a>
+                {% endfor %}
+            {% else %}
                 Repository information not parsed.
             {% endif %}
-
         </div>
     </div>
 </div>
