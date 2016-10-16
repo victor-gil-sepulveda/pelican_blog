@@ -10,30 +10,36 @@ def get_github_repos(user_id):
         json_text = urllib2.urlopen(url).read()
         repos = json.loads(json_text)
         for repo in repos:
-            new_repo = {}
-            name =  repo["name"]
-            if len(name) > 20:
-                name = name[0:20]+"..."
-            new_repo["name"] = name
-            new_repo["link"] = repo["html_url"]
-            new_repo["stars"] = repo["stargazers_count"]
-            description = repo["description"]
-            if description is not None and len(description) > 150:
-                description = description[0:150]+"..."
-            new_repo["description"] = description
-            new_repo["main_language"] = repo["language"]
-            new_repo["type"] = "github"
-            try:
-                lang_json_text = urllib2.urlopen(repo["languages_url"]).read()
-                new_repo["all_languages"] = json.loads(lang_json_text)
-            except:
-                print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ LANG INFO FOR GITHUB REPO: %s in %s "%(repo["name"], repo["languages_url"])
-            new_repos.append(new_repo);
+            if not repo["fork"]:
+                new_repo = {}
+                name =  repo["name"]
+                if len(name) > 20:
+                    name = name[0:20]+"..."
+                new_repo["name"] = name
+                new_repo["link"] = repo["html_url"]
+                new_repo["stars"] = repo["stargazers_count"]
+                description = repo["description"]
+                if description is not None and len(description) > 150:
+                    description = description[0:150]+"..."
+                new_repo["description"] = description
+                new_repo["main_language"] = repo["language"]
+                new_repo["type"] = "github"
+                try:
+                    lang_json_text = urllib2.urlopen(repo["languages_url"]).read()
+                    new_repo["all_languages"] = json.loads(lang_json_text)
+                except:
+                    print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ LANG INFO FOR GITHUB REPO: %s in %s "%(repo["name"], repo["languages_url"])
+                new_repos.append(new_repo)
     except:
         print >> sys.stderr, "[ERROR] IMPOSSIBLE TO READ OR PROCESS GITHUB REPOSITORIES"
     return new_repos
 
 def get_bitbucket_repos(user_id):
+    """
+    TODO : HANDLE FORKS
+    :param user_id:
+    :return:
+    """
     url = "https://api.bitbucket.org/2.0/repositories/{}".format(user_id)
     new_repos = []
     try:
@@ -65,6 +71,9 @@ def add_language_stats(stats_object, new_stats):
             stats_object[lang] += new_stats[lang]
 
 def process_stats(stats_object):
+    """
+    # TODO: Cluster langs with less than x% as "other" languages
+    """
     sum = 0.0
     for lang in stats_object:
         sum += stats_object[lang]
@@ -72,13 +81,12 @@ def process_stats(stats_object):
         for lang in stats_object:
             stats_object[lang] /= sum
             stats_object[lang] *= 100
-        # Cluster the "other" languages
 
 def get_repo_info(generator):
     all_repos = []
     if generator.settings["REPOS_DO_PROCESS"]:
         try:
-            github_repos = get_github_repos(generator.settings["REPOS_GITHUB_USER"]);
+            github_repos = get_github_repos(generator.settings["REPOS_GITHUB_USER"])
             bitbucket_repos = get_bitbucket_repos(generator.settings["REPOS_BITBUCKET_USER"])
             all_repos.extend(github_repos)
             all_repos.extend(bitbucket_repos)
