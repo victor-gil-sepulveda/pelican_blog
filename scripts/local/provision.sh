@@ -8,3 +8,5 @@ sudo python setup.py install
 cd ..
 
 sudo pip install python-vagrant
+
+sudo apt install ghp-import

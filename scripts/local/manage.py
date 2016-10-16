@@ -73,6 +73,10 @@ def new_page(title, author, summary):
 def remove_symlinks():
     os.system("find -type l -delete")
 
+@manage.subcommand(description='Removes symlinks')
+def remove_symlinks():
+    os.system("find -type l -delete")
+
 if __name__ == '__main__':
     try:
         app.run()
