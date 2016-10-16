@@ -10,3 +10,5 @@ cd ..
 sudo pip install python-vagrant
 
 sudo apt install ghp-import
+
+#ADD bin folder to PATH
