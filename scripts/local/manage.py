@@ -22,7 +22,7 @@ def serve():
 
 @manage.subcommand(description='Creates a new post using the current timestamp')
 @clip.arg('title', required=True, help='The title of the post')
-@clip.opt('-d', '--draft', default=False, help='If defined, the new post will be a draft')
+@clip.flag('-d', '--draft', help='If defined, the new post will be a draft')
 def new_post(title, draft):
     """
     Based on http://nafiulis.me/making-a-static-blog-with-pelican.html
@@ -47,7 +47,7 @@ def new_post(title, draft):
 
 @manage.subcommand(description='Creates a new page')
 @clip.arg('title', required=True, help='The title of the post')
-@clip.opt('-a', '--author', default=u"V0x0237ctor Gil", help='Athor of the page')
+@clip.opt('-a', '--author', default=u"V0x0237ctor Gil", help='Author of the page')
 @clip.opt('-s', '--summary', default="", help='Brief explanation of page contents')
 def new_page(title, author, summary):
     today = datetime.today()
@@ -73,9 +73,27 @@ def new_page(title, author, summary):
 def remove_symlinks():
     os.system("find -type l -delete")
 
-@manage.subcommand(description='Removes symlinks')
-def remove_symlinks():
-    os.system("find -type l -delete")
+@manage.subcommand(description='Publishes the blog to github pages. Errors are not handled.')
+@clip.flag('-v', '--verbose', help='Verbose flag')
+def publish(verbose):
+    OUT_DIR = "gh-output"
+
+    # Clean up the directory if it exists
+    command = "if [ -d %s ]; then rm -rf %s; fi;"%(OUT_DIR, OUT_DIR)
+    os.system(command)
+    if verbose: print command
+
+    # This is run in the vm system and copy everything to the shared folder;
+    # Symlinks are converted to their copied counterparts
+    command = "vagrant ssh -c 'cd blog; make publish; rsync output/ /vagrant/%s/ -a --copy-links %s'"%(OUT_DIR, "-v" if verbose else "")
+    os.system(command)
+    if verbose: print command
+
+    # Then ghp-import is used to publish it (to the master branch).
+    # It needs a repo to be set up (in this case already set up to my gh pages repo.
+    command = "ghp-import -b master -p -m 'New blog update' %s "%OUT_DIR
+    os.system(command)
+    if verbose: print command
 
 if __name__ == '__main__':
     try:
