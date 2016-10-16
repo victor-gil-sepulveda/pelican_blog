@@ -10,16 +10,6 @@ PATH = 'content'
 TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = u'en'
 
-# Feed generation is usually not desired when developing
-FEED_DOMAIN = None
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
-FEED_ALL_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_ATOM = None
-TRANSLATION_FEED_ATOM = None
-AUTHOR_FEED_ATOM = None
-AUTHOR_FEED_RSS = None
-
-
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
@@ -56,8 +46,6 @@ LINKS = (
         ("My CV", "/cv.html")
         )
 
-DISQUS_SITENAME = "thelostlibraryofagraphur"
-
 STATIC_PATHS = [ # TODO : Robots.txt
     'images', 
     'extra/favicon.ico' ,
@@ -74,4 +62,4 @@ REPOS_DO_CHART = False
 REPOS_GITHUB_USER = "victor-gil-sepulveda"
 REPOS_BITBUCKET_USER = "victor_gil_sepulveda"
 
-GOOGLE_ANALYTICS = "UA-52604711-1"
+

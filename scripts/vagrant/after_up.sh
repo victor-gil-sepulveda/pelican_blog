@@ -17,8 +17,12 @@ rm -rf blog/content
 # we are going to add the blog pages and posts
 ln -s /vagrant/content /home/vagrant/blog/content
 ln -s /vagrant/data/theme /home/vagrant/blog/theme
+
+# Add configuration files
 rm /home/vagrant/blog/pelicanconf.py
 ln -s /vagrant/data/pelicanconf.py /home/vagrant/blog/pelicanconf.py
+rm /home/vagrant/blog/publishconf.py
+ln -s /vagrant/data/publishconf.py /home/vagrant/blog/publishconf.py
 
 # Handle extra folder (favicon, robots etc)
 if [ -d /home/vagrant/blog/content/extra ]; then
