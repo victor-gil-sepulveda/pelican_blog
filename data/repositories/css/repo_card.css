@@ -47,6 +47,7 @@ vertical-align https://codepen.io/edge0703/pen/iHJuA */
     text-align: justify;
     height:80px;
     width:100%;
+    line-height: 110%;
 }
 
 .repo-card-footer {
