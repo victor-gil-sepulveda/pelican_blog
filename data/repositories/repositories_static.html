@@ -74,6 +74,13 @@
 
         {% if REPOS_DO_CHART %}
         <h3 class = "entry-title"> Language statistics </h3>
+        <div class = "entry-content" >
+            <p>
+                The chart below has been calculated using Github's language report (Bitbucket repositories are not
+                included in the calculations). It may not be completely accurate as, among other things, does not take
+                embedded code into account.
+            </p>
+        </div>
         <div >
             <canvas class="repo-lang-chart" id = "chart" ></canvas>
         </div>
