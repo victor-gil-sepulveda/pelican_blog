@@ -1,1 +1,0 @@
-# victor-gil-sepulveda.github.io
