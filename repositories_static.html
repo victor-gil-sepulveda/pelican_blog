@@ -42,6 +42,46 @@
 
 <link rel="stylesheet" type="text/css" href="https://victor-gil-sepulveda.github.io/theme/css/repo_card.css" />
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+<script>
+    //http://stackoverflow.com/questions/1327756/can-you-have-multiple-document-readyfunction-sections
+    var dynamicColors = function() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
+    $(document).ready(function(){
+        var ctx = document.getElementById("chart");
+
+        // Create the data and labels
+        var data = []
+        var labels = []
+
+        /*var data = [  0.687890909353,  0.0110681320791,  28.5305604277,  6.1828124633,  54.2828598519,
+        0.00018969069036,  3.07655067983,  1.58380430264,  0.0155951323749,  0.000125750008216,  0.0645758262532,
+        0.0648465084743,  0.0647825677921,  5.43433775762,  ]
+        var labels = [  "C",  "Shell",  "HTML",  "Python",  "JavaScript",  "VimL",  "C++",  "TeX",
+        "Tcl",  "Batchfile",  "Cuda",  "Mathematica",  "R",  "CSS"  ]*/
+
+        var chart_data = {
+            labels: labels,
+            datasets: [
+                {
+                    data:data,
+                    backgroundColor: labels.map(dynamicColors)
+                }],
+        };
+
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: chart_data,
+            label: ["Percentage of bytes per language"]/*,
+            options: options*/
+        });
+    });
+</script>
 </head>
 
 <body class="home blog custom-background " >
@@ -95,18 +135,28 @@
             </p>
         </div>
 
+        <h3 class = "entry-title"> Language statistics </h3>
+        <div class = "entry-content" >
+            <p>
+                The chart below has been calculated using Github's language report (Bitbucket repositories are not
+                included in the calculations). It may not be completely accurate as, among other things, does not take
+                embedded code into account.
+            </p>
+        </div>
+        <div >
+            <canvas class="repo-lang-chart" id = "chart" ></canvas>
+        </div>
 
         <h3 class = "entry-title"> Repositories</h3>
         <div id="card-holder">
                 Repository information not parsed.
-
         </div>
     </div>
 </div>
 		</div>
 		
 		<div id="footer">
-			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme based on pelican-chunk by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
 				<script type="text/javascript">
 					var _gaq = _gaq || [];
 					_gaq.push(['_setAccount', 'UA-52604711-1']);
