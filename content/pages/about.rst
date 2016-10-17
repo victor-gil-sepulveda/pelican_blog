@@ -12,4 +12,4 @@ This is the second reincarnation of my personal blog, hosted in `Github pages <h
 Here, I expect to record my steps in the long (and potentially infinite) journey to become a better Software Engineer,
 as well as my personal projects, thoughts and experiences (of any kind).
 
-And I promise I will publish more than one post this time! *crosses his fingers*
+And I promise I will publish more than one post this time! *\*crosses his fingers\**

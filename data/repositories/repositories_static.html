@@ -18,7 +18,7 @@
         var ctx = document.getElementById("chart");
 
         // Create the data and labels
-        var data = [{% if language_stats_values %} {% for langval in language_stats_values %} {{langval}}, {% endfor %} {% endif %}]
+        var data = [{% if language_stats_values %} {% for langval in language_stats_values %} {{'%0.2f' % langval}}, {% endfor %} {% endif %}]
         var labels = [{% if language_stats_labels %} {% for lang in language_stats_labels %} "{{lang}}", {% endfor %} {% endif %}]
 
         /*var data = [  0.687890909353,  0.0110681320791,  28.5305604277,  6.1828124633,  54.2828598519,

@@ -10,6 +10,7 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
+
 SITEURL = 'https://victor-gil-sepulveda.github.io'
 RELATIVE_URLS = False
 

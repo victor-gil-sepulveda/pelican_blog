@@ -85,7 +85,7 @@ def publish(verbose):
 
     # This is run in the vm system and copy everything to the shared folder;
     # Symlinks are converted to their copied counterparts
-    command = "vagrant ssh -c 'cd blog; make publish; rsync output/ /vagrant/%s/ -a --copy-links %s'"%(OUT_DIR, "-v" if verbose else "")
+    command = "vagrant ssh -c '/vagrant/scripts/vagrant/copy_for_publish.sh %s %s'"%(OUT_DIR, "-v" if verbose else "")
     os.system(command)
     if verbose: print command
 
