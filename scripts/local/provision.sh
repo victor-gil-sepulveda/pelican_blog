@@ -11,4 +11,9 @@ sudo pip install python-vagrant
 
 sudo apt install ghp-import
 
-#ADD bin folder to PATH
+
+# for the blog_manage script
+# TODO: Try adding the py script to the PYPATH
+# ADD bin folder to PATH
+# THEN REGISTER BY ADDING THIS TO BASHRC (UPDATE OPTIONS WHEN NEEDED)
+complete -W "new_page new_post publish remove_symlinks serve" blog_manage
