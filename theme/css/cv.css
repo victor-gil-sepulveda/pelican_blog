@@ -1,0 +1,13 @@
+.portrait{
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px;
+    border-radius: 50%;
+    width:30%;height:30%;
+    -webkit-filter: grayscale(85%);
+    filter: grayscale(85%);
+}
+
+.below-image-text{
+    text-align: center;
+}
