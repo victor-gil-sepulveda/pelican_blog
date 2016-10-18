@@ -30,7 +30,7 @@ SOCIAL_ICONS_MENU = (
             ("Google+", "theme/images/google-plus.png", "https://plus.google.com/u/0/110041683601844851417"),
             )
 
-PLUGINS = ['my_pelican_plugins.static_repo_generation',]
+PLUGINS = ['my_pelican_plugins.static_repo_generation','summary.summary',]
 
 DIRECT_TEMPLATES = ['index', 
                     'categories', 
@@ -64,4 +64,5 @@ REPOS_DO_CHART = False
 REPOS_GITHUB_USER = "victor-gil-sepulveda"
 REPOS_BITBUCKET_USER = "victor_gil_sepulveda"
 
-SUMMARY_MAX_LENGTH = 50
+# not needed if using the summary plugin
+#SUMMARY_MAX_LENGTH = 50
