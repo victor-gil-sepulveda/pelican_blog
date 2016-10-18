@@ -30,3 +30,4 @@ DISQUS_SITENAME = "thelostlibraryofagraphur"
 
 REPOS_DO_PROCESS = True
 REPOS_DO_CHART = True
+
