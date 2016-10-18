@@ -49,11 +49,13 @@ LINKS = (
 STATIC_PATHS = [ # TODO : Robots.txt
     'images', 
     'extra/favicon.ico' ,
-    'extra/CV.pdf'
+    'extra/CV.pdf',
+    'extra/CNAME'
 ]
 EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
-    'extra/CV.pdf' : {'path': 'CV.pdf'}
+    'extra/CV.pdf' : {'path': 'CV.pdf'},
+    'extra/CNAME' : {'path': 'CNAME'}
 
 }
 
@@ -62,4 +64,4 @@ REPOS_DO_CHART = False
 REPOS_GITHUB_USER = "victor-gil-sepulveda"
 REPOS_BITBUCKET_USER = "victor_gil_sepulveda"
 
-
+SUMMARY_MAX_LENGTH = 50
