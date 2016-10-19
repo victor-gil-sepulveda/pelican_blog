@@ -18,14 +18,14 @@
         <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js"></script>
 
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
-		<link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://victor-gil-sepulveda.github.io/theme/css/style.css" />
 		<style type="text/css">
 			body.custom-background { background-color: #f5f5f5; }
 		</style>
 		<link rel="alternate" type="application/atom+xml"
 			title="The lost library of Agraphur — Flux Atom"
-			href="/" /> 
-		<!--[if lte IE 8]><script src="/theme/js/html5shiv.js"></script><![endif]-->
+			href="https://victor-gil-sepulveda.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://victor-gil-sepulveda.github.io/theme/js/html5shiv.js"></script><![endif]-->
 
         <script>
             $(document).ready(function(){
@@ -40,14 +40,54 @@
         </script>
 
 
-<link rel="stylesheet" type="text/css" href="/theme/css/repo_card.css" />
+<link rel="stylesheet" type="text/css" href="https://victor-gil-sepulveda.github.io/theme/css/repo_card.css" />
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+<script>
+    //http://stackoverflow.com/questions/1327756/can-you-have-multiple-document-readyfunction-sections
+    var dynamicColors = function() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
+    $(document).ready(function(){
+        var ctx = document.getElementById("chart");
+
+        // Create the data and labels
+        var data = [  4.58,  0.03,  1.21,  41.02,  0.43,  20.49,  9.93,  0.10,  0.43,  0.43,  20.84,  0.51,  ]
+        var labels = [  "C",  "Shell",  "HTML",  "Python",  "Mathematica",  "C++",  "TeX",  "Tcl",  "R",  "Cuda",  "JavaScript",  "CSS",  ]
+
+        /*var data = [  0.687890909353,  0.0110681320791,  28.5305604277,  6.1828124633,  54.2828598519,
+        0.00018969069036,  3.07655067983,  1.58380430264,  0.0155951323749,  0.000125750008216,  0.0645758262532,
+        0.0648465084743,  0.0647825677921,  5.43433775762,  ]
+        var labels = [  "C",  "Shell",  "HTML",  "Python",  "JavaScript",  "VimL",  "C++",  "TeX",
+        "Tcl",  "Batchfile",  "Cuda",  "Mathematica",  "R",  "CSS"  ]*/
+
+        var chart_data = {
+            labels: labels,
+            datasets: [
+                {
+                    data:data,
+                    backgroundColor: labels.map(dynamicColors)
+                }],
+        };
+
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: chart_data,
+            label: ["Percentage of bytes per language"]/*,
+            options: options*/
+        });
+    });
+</script>
 </head>
 
 <body class="home blog custom-background " >
 	<div id="container">
 		<div id="header">
-				<h1 id="site-title"><a href="">The lost library of Agraphur</a></h1>
+				<h1 id="site-title"><a href="https://victor-gil-sepulveda.github.io">The lost library of Agraphur</a></h1>
 <h2 id="site-description">Pieces from a whole</h2>		</div><!-- /#banner -->
 		
 		<div id="menu">
@@ -58,13 +98,13 @@
 					<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/repositories_static.html">Repos</a></li>
 					<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/cv.html">My CV</a></li>
 
-					<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/pages/about.html">About</a></li>
+					<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://victor-gil-sepulveda.github.io/pages/about.html">About</a></li>
 
-					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="feeds/all.atom.xml" style="margin: 0px; padding: 0px" target="_blank"><img src='/theme/images/feed.png' alt='Feed' style = 'margin:0px; padding:0px;'></a></li>
-					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="mailto:victor.gil.sepulveda@gmail.com" style="margin: 0px; padding: 0px" target="_blank"><img src='/theme/images/contact.png' alt='Contact' style = 'margin:0px; padding:0px;'></a></li>
-					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="https://twitter.com/intent/follow?screen_name=vgilsep" style="margin: 0px; padding: 0px" target="_blank"><img src='/theme/images/twitter.png' alt='Twitter' style = 'margin:0px; padding:0px;'></a></li>
-					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="https://es.linkedin.com/in/víctor-a-gil-4509b0115" style="margin: 0px; padding: 0px" target="_blank"><img src='/theme/images/linked-in.png' alt='LinkedIn' style = 'margin:0px; padding:0px;'></a></li>
-					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="https://plus.google.com/u/0/110041683601844851417" style="margin: 0px; padding: 0px" target="_blank"><img src='/theme/images/google-plus.png' alt='Google+' style = 'margin:0px; padding:0px;'></a></li>
+					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="feeds/all.atom.xml" style="margin: 0px; padding: 0px" target="_blank"><img src='https://victor-gil-sepulveda.github.io/theme/images/feed.png' alt='Feed' style = 'margin:0px; padding:0px;'></a></li>
+					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="mailto:victor.gil.sepulveda@gmail.com" style="margin: 0px; padding: 0px" target="_blank"><img src='https://victor-gil-sepulveda.github.io/theme/images/contact.png' alt='Contact' style = 'margin:0px; padding:0px;'></a></li>
+					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="https://twitter.com/intent/follow?screen_name=vgilsep" style="margin: 0px; padding: 0px" target="_blank"><img src='https://victor-gil-sepulveda.github.io/theme/images/twitter.png' alt='Twitter' style = 'margin:0px; padding:0px;'></a></li>
+					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="https://es.linkedin.com/in/víctor-a-gil-4509b0115" style="margin: 0px; padding: 0px" target="_blank"><img src='https://victor-gil-sepulveda.github.io/theme/images/linked-in.png' alt='LinkedIn' style = 'margin:0px; padding:0px;'></a></li>
+					<li class="menu-item-type-post_type menu-item-object-page" style="margin: 0px; padding: 0px; padding-left: 10px;float: right;width: 30px;"><a href="https://plus.google.com/u/0/110041683601844851417" style="margin: 0px; padding: 0px" target="_blank"><img src='https://victor-gil-sepulveda.github.io/theme/images/google-plus.png' alt='Google+' style = 'margin:0px; padding:0px;'></a></li>
 				</ul>
 			</div> <!--/#menu-navigation-container-->
 		</div><!-- /#menu -->
@@ -95,10 +135,512 @@
             </p>
         </div>
 
+        <h3 class = "entry-title"> Language statistics </h3>
+        <div class = "entry-content" >
+            <p>
+                The chart below has been calculated using Github's language report (Bitbucket repositories are not
+                included in the calculations). It may not be completely accurate as, among other things, does not take
+                embedded code into account.
+            </p>
+        </div>
+        <div >
+            <canvas class="repo-lang-chart" id = "chart" ></canvas>
+        </div>
 
         <h3 class = "entry-title"> Repositories</h3>
         <div id="card-holder">
-                Repository information not parsed.
+                <a href = "https://github.com/victor-gil-sepulveda/datasciencecoursera"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>datasciencecoursera</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Files for the Data Science track Coursera courses
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                R
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PathPlanning-RRT"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PathPlanning-RRT</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            (Incomplete) Files for a robotics Rapidly-exploring Randoom Tree implementation
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                C++
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-ANMInternalCoordinates"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-ANMInternalCoord...</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Implementation of an Anisotropic Normal Mode methodology in Internal Coordinates.
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                C++
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-ANMPythonHelpers"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-ANMPythonHelpers</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Some tools for the ANM in internal coordinates project
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-Autocorrelation"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-Autocorrelation</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Scripts to calculate atomic autocorrelation from PDB trajectories
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-CondensedMatrix"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-CondensedMatrix</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Implementation of a fast distance matrix container (triangular symmetric matrix with 0 diag.). Formerly part of pyRMSD.
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                C
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-GPCR"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-GPCR</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Some scripts for the GPCR experiment.
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-HIVProteaseMutation"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-HIVProteaseMutat...</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Python module to perform the (computational) experiments of [this paper] through PELE webserver queries. 
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-HPCModel"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-HPCModel</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Helper scripts for the (cancelled) contextual HPC project.
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-IDP"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-IDP</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Scripts to work in the intrinsically disordered proteins project. 
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-PDBTrajectoryMerger"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-PDBTrajectoryMer...</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            A very simple Python program to merge trajectories of biomolecules in PDB format. Trajectories can have an arbitrary number of frames, which means tha...
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-PlopMetrics"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-PlopMetrics</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Toolkit to extract old PELE (Fortran) metrics.
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/PhD-VMDSnapshotTiles"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-VMDSnapshotTiles</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            A Python script to generate a tiled image of the frames of a pdb trajectory.
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/pyProCT"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>pyProCT</h1>
+                            </div>
+                            <div class="repo-card-title-element">
+                                &#9734; 8
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            pyProCT is an open source cluster analysis software especially adapted for jobs related with structural proteomics. Its approach allows users to defin...
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/pyProCT-GUI"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>pyProCT-GUI</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Javascript-based interface for pyProCT
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/pyProCT-Regression"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>pyProCT-Regression</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Some regression tests for pyProCT
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/pyRMSD"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>pyRMSD</h1>
+                            </div>
+                            <div class="repo-card-title-element">
+                                &#9734; 4
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            pyRMSD is a small Python package that aims to offer an integrative and efficient way of performing RMSD calculations of large sets of structures. It i...
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                C++
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/pyRMSD-Comparison"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>pyRMSD-Comparison</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Collection of 4 scripts that were used to compare pyRMSD against other packages with RMSD calculation features. This scripts show how to integrate g_r...
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/pyScheduler"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>pyScheduler</h1>
+                            </div>
+                            <div class="repo-card-title-element">
+                                &#9734; 3
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Implementation of a simple task scheduler. It can run taks in parallel.
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                Python
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/thesis-latex"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>thesis-latex</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Files to compile my doctoral thesis
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                TeX
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "https://github.com/victor-gil-sepulveda/victor-gil-sepulveda.github.io"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>victor-gil-sepulveda...</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            This website's files. Proudly generated with Pelican!
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/github.png">
+                            </div>
+                            <div class="repo-card-language">
+                                HTML
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "{u'href': u'https://bitbucket.org/victor_gil_sepulveda/ffmpeg4android'}"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>Ffmpeg4Android</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Files to compile an ARM-compatible version of ffmpeg
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/bitbucket.png">
+                            </div>
+                            <div class="repo-card-language">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href = "{u'href': u'https://bitbucket.org/victor_gil_sepulveda/phd-thesisandanmplots'}"  target="blank" style="text-decoration: none;">
+                    <div class="repo-card">
+                        <div class="repo-card-title">
+
+                            <div class="repo-card-title-element">
+                                <h1>PhD-ThesisAndANMPlot...</h1>
+                            </div>
+                        </div>
+                        <div class="repo-card-description">
+                            Python code used to generate some of the plots of my doctoral thesis and the ANM paper.
+                        </div>
+                        <div class="repo-card-footer">
+                            <div class="repo-card-repotype">
+                                <img src="/theme/images/bitbucket.png">
+                            </div>
+                            <div class="repo-card-language">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
         </div>
     </div>
 </div>
@@ -106,7 +648,26 @@
 		
 		<div id="footer">
 			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme based on pelican-chunk by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
-		</div><!-- /#footer -->
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-52604711-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+<script type="text/javascript">
+    var disqus_shortname = 'thelostlibraryofagraphur';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>		</div><!-- /#footer -->
 	</div><!-- /#container -->
 	<div style="display:none"></div>
 </body>
