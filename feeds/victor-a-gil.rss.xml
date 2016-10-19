@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The lost library of Agraphur</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2016-10-17T19:30:00+02:00</updated><entry><title>Blogging with Pelican, first impressions</title><link href="/theres_a_new_bloger.html" rel="alternate"></link><published>2016-10-17T19:30:00+02:00</published><updated>2016-10-17T19:30:00+02:00</updated><author><name>Víctor A. Gil</name></author><id>tag:,2016-10-17:theres_a_new_bloger.html</id><summary type="html">&lt;div class="section" id="there-s-a-new-blogger-in-town"&gt;
+<rss version="2.0"><channel><title>The lost library of Agraphur</title><link>/</link><description>Pieces from a whole</description><lastBuildDate>Mon, 17 Oct 2016 19:30:00 +0200</lastBuildDate><item><title>Blogging with Pelican, first impressions</title><link>/theres_a_new_bloger.html</link><description>&lt;div class="section" id="there-s-a-new-blogger-in-town"&gt;
 &lt;h2&gt;There's a new blogger in town!&lt;/h2&gt;
 &lt;p&gt;It was the year 2014. I was young and inexperienced &lt;a class="footnote-reference" href="#id3" id="id1"&gt;[1]&lt;/a&gt;, and I wanted to start a web log. At that time I was coursing a PhD, which is a well known way of being poor for the rest of your life &lt;a class="footnote-reference" href="#id4" id="id2"&gt;[2]&lt;/a&gt;, reason why I looked for a free hosting solution where my (obviously static) blog would reside. The winner from my not-so-impressive list was Github pages.&lt;/p&gt;
 &lt;p&gt;Github pages can process &lt;a class="reference external" href="https://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; blogs out of the box, which looked like a very fancy feature, but Jekyll did not look so fancy to me. It was written in Ruby and I did not had patience to learn that language. But there was still another option: &lt;a class="reference external" href="http://octopress.org/"&gt;Octopress&lt;/a&gt;. They were claiming that it was a very automatized Jekyll blog generation tool. I believed it. And this was my first and last mistake as blogger.&lt;/p&gt;
@@ -35,4 +35,4 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-</summary><category term="Pelican"></category></entry></feed>
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Víctor A. Gil</dc:creator><pubDate>Mon, 17 Oct 2016 19:30:00 +0200</pubDate><guid isPermaLink="false">tag:,2016-10-17:theres_a_new_bloger.html</guid><category>Pelican</category></item></channel></rss>

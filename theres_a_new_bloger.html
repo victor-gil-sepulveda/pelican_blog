@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-		<title>The lost library of Agraphur &mdash; Articles by Víctor A. Gil</title>
+		<title>The lost library of Agraphur &mdash; Blogging with Pelican, first impressions</title>
 		<meta charset="utf-8" />
 		
 		<!-- Fonts from google fonts -->
@@ -67,10 +67,10 @@
 		</div><!-- /#menu -->
 		
 		<div class="page-title">
-	<h2>Posted by <span>Víctor A. Gil</span> &hellip;</h2>
 		</div>
 	
 		<div > <!--id="contents"-->
+
 
 <div id= "contents">
     <div class="post type-post status-publish format-standard hentry category-general" id="post">
@@ -84,16 +84,51 @@
 			    <a href="/theres_a_new_bloger.html" title="Permalink to Blogging with Pelican, first impressions" rel="bookmark">Blogging with Pelican, first impressions</a>
 		    </h2>
 		    <div class="entry-content">
-			    
+			    <div class="section" id="there-s-a-new-blogger-in-town">
+<h2>There's a new blogger in town!</h2>
+<p>It was the year 2014. I was young and inexperienced <a class="footnote-reference" href="#id3" id="id1">[1]</a>, and I wanted to start a web log. At that time I was coursing a PhD, which is a well known way of being poor for the rest of your life <a class="footnote-reference" href="#id4" id="id2">[2]</a>, reason why I looked for a free hosting solution where my (obviously static) blog would reside. The winner from my not-so-impressive list was Github pages.</p>
+<p>Github pages can process <a class="reference external" href="https://jekyllrb.com/">Jekyll</a> blogs out of the box, which looked like a very fancy feature, but Jekyll did not look so fancy to me. It was written in Ruby and I did not had patience to learn that language. But there was still another option: <a class="reference external" href="http://octopress.org/">Octopress</a>. They were claiming that it was a very automatized Jekyll blog generation tool. I believed it. And this was my first and last mistake as blogger.</p>
+</div>
+<div class="section" id="my-experience-with-octopress">
+<h2>My experience with Octopress</h2>
+<p>As you may have already guessed from the previous paragraph, my experience with Octopress was not that good. First and foremost, all the magic it was performing made me feel uncomfortable. But maube the most important thing is that it was cluttering my blog workspace with tones of folders and configuration files. And as I did not read the code, I did not have any clue of how the generation process worked.</p>
+<p>In more than two years I only published a post. And its source file just disappeared one of those times I had to reinstall Octopress. I also wrote a lot of other proto-posts in <em>txt</em> files. All were lost the last time I had to change the <em>OS</em>. So, in conclusion, Octopress was not fostering my productivity at all.</p>
+</div>
+<div class="section" id="long-live-pelican">
+<h2>Long live Pelican!</h2>
+<p>Recently, and thanks to several conversations with professional recruiters, I have discovered that my CV is too difficult to understand. It is understandable: since they receive tones of CVs per day and only have some minutes to spend with every one, a too complex CV is the first step to failure. Besides, my CV has two added handicaps: first,  it is an &quot;academic CV&quot;, which means it is long and full of details that are of no interest to regular companies. Second, I have worked as a <a class="reference external" href="http://www.rse.ac.uk/who.html">Research Software Engineer</a> these last 9 years, which is a rare and difficult to explain role. This meant I had to devise a better way to present myself to prospective employers. What about trying with a blog again? Why not?</p>
+<p>Again, I focused on static blog generators, but this time I decided I wanted it to be in a language I already mastered: Python. There are many choices (ej. <a class="reference external" href="https://getnikola.com/">Nikola</a>, <a class="reference external" href="http://hyde.github.io/">Hyde</a>), and I just picked the one that looked to have the smaller codebase: <a class="reference external" href="http://blog.getpelican.com/">Pelican</a>.</p>
+
 <p>Starting a blog with Pelican is incredibly easy. Just use the &quot;quickstart&quot; script and download a theme. You will have a complete blog in a matter of minutes. And, also very important, you will not end with cluttered workspace: in its simplest form, Pelican just needs a contents folder and a couple of configuration scripts. Which are written in Python too. Delightful.</p>
+
+<p>There are only two drawbacks of Pelican as far as I have seen:</p>
+<ul class="simple">
+<li>The documentation is too brief and does not cover all the features in detail. It can become very difficult to obtain information about how to extend Pelican with plugins or about how to use some configuration options (which can give you the impression that some of them are buggy). You will end learning by example, thanks to the several other Pelican users that have documented their efforts.</li>
+<li>It does not have a managing system for simple and repetitive tasks like creating posts, which other static generators like Octopress have.</li>
+</ul>
+<p>I suppose the first issue will improve over time, and about the second one ... well, you can do it yourself. At the end of the day that is</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Now I am older and yet inexperienced.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>You gain extra poverty points if you do it in Spain!</td></tr>
+</tbody>
+</table>
+</div>
 
 		    </div> <!--/#entry-content-->
         		<span class="tag-links"><strong>Tagged</strong>
  <a href="/tag/pelican.html" rel="tag">Pelican</a>        		</span>
 	    </div> <!--/#main-->
     </div>  <!--/#post-->
-</div><div class="navigation">
 </div>
+
+
 		</div>
 		
 		<div id="footer">
