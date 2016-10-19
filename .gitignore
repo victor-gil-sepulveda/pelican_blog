@@ -3,4 +3,4 @@
 *.swp
 .vagrant
 .Rhistory
-gh-output
+ghp-output

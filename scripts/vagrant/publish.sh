@@ -7,4 +7,6 @@ cd /home/vagrant/blog
 export PYTHONPATH=/vagrant/plugins:$PYTHONPATH
 
 #make publish
-rsync output/ /vagrant/$1/ -a --copy-links $2
+pelican -q -o ghp-output -s publishconf.py --ignore-cache
+
+rsync ghp-output/ /vagrant/$1/ -a --copy-links $2
