@@ -1,4 +1,4 @@
-Blogging with Pelican, first impressions
+Blogging with Pelican: First Impressions
 ########################################
 
 :date: 2016-10-17 19:30
@@ -6,6 +6,7 @@ Blogging with Pelican, first impressions
 :category:
 :slug: theres_a_new_bloger
 :status: published
+
 
 There's a new blogger in town!
 ------------------------------
