@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-		<title>The lost library of Agraphur &mdash; Articles by Víctor A. Gil</title>
+		<title>The lost library of Agraphur &mdash; How to run VMD 1.9.3 beta 4 for Linux</title>
 		<meta charset="utf-8" />
 		
 		<!-- Fonts from google fonts -->
@@ -67,10 +67,10 @@
 		</div><!-- /#menu -->
 		
 		<div class="page-title">
-	<h2>Posted by <span>Víctor A. Gil</span> &hellip;</h2>
 		</div>
 	
 		<div > <!--id="contents"-->
+
 
 <div id= "contents">
     <div class="post type-post status-publish format-standard hentry category-general" id="post">
@@ -86,57 +86,93 @@
 		    </h2>
 		    <div class="entry-content">
 			    <!-- PELICAN_BEGIN_SUMMARY -->
-<p><a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a> is, without any doubt, one of the most used free molecular visualizers out there. The only problem this software has is that the guys of the T&amp;CB group at the university of Illinois do not update it very often. We must be happy then that a new beta ...</p></!-->
-		    </div> <!--/#entry-content-->
-	    </div> <!--/#main-->
-    </div>  <!--/#post-->
-</div>
-<div id= "contents">
-    <div class="post type-post status-publish format-standard hentry category-general" id="post">
-	    <div class="entry-meta">
-		    <div class="date"><a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html">Tue 25 October 2016</a></div>
-		    <span class="byline">By <a href="https://victor-gil-sepulveda.github.io/author/victor-a-gil.html">Víctor A. Gil</a></span>
-			    <div class="comments"><a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html#disqus_thread" title="Comment on Blogging with Pelican: Experimental Setup">comments</a></div>
-			    <span class="cat-links"><a href="https://victor-gil-sepulveda.github.io/category/posts.html" title="View all posts in posts" rel="category tag">posts</a></span>
-	    </div> <!-- /#entry-meta -->
-	    <div class="main">
-		    <h2 class="entry-title">
-			    <a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html" title="Permalink to Blogging with Pelican: Experimental Setup" rel="bookmark">Blogging with Pelican: Experimental Setup</a>
-		    </h2>
-		    <div class="entry-content">
-			    <!-- PELICAN_BEGIN_SUMMARY -->
-<p>Before getting serious into blogging with Pelican, there are two main concerns that must be solved: how to isolate it and all its dependencies from your current Python installation, and how to effectively manage version control.</p>
+<p><a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a> is, without any doubt, one of the most used free molecular visualizers out there. The only problem this software has is that the guys of the T&amp;CB group at the university of Illinois do not update it very often. We must be happy then that a new beta version has landed the last 28th of October.</p>
 <!-- PELICAN_END_SUMMARY -->
-<p>For the first issue, the usual recommendation is to install Pelican in a new ...</p></!--></!-->
+<p>The problem of beta versions is that, well, they are beta. Beta versions are considered to be unstable and contain unknown bugs that users can discover and report. Isn't it fun?</p>
+<p>In this case, a minor error avoids some users from enjoying this marvelous software. In order to install it in a 64 bit Linux machine, just download the proper tar.gz file (e.g. <em>LINUX_64OpenGL,CUDA,OptiX,OSPRay</em>), unzip it wherever you want, enter the folder and run ./configure with the options you want (running it without options will print them). To be honest, I do not really know if the options you choose will modify the final result. This is an example:</p>
+<div class="highlight"><pre><span></span>&gt; tar -xvf vmd-1.9.3beta4.bin.LINUXAMD64-CUDA8-OptiX4-OSPRay111.opengl.tar.gz
+&gt; <span class="nb">cd</span> vmd-1.9.3beta4/
+&gt; ./configure LINUXAMD64 OPENGL LIBTACHYON TCL PYTHON PTHREADS NUMPY
+&gt; <span class="nb">cd</span> src
+&gt; sudo make install
+</pre></div>
+<p>and we are done! Just run <code class="bash">vmd</code> in a console emulator and you can start enjo... wait! what happened!</p>
+<div class="highlight"><pre><span></span>&gt; vmd
+/usr/local/bin/vmd: 331: /usr/local/bin/vmd: Syntax error: <span class="s2">&quot;else&quot;</span> unexpected <span class="o">(</span>expecting <span class="s2">&quot;then&quot;</span><span class="o">)</span>
+</pre></div>
+<p>Ok, so this is one of these unknown bugs I mentioned before. However, we are lucky that this one is quite simple. A quick inspection of the vmd launcher script (you can find the file using <code class="bash">which vmd</code>) reveals that a <code class="bash"><span class="k">then</span></code> statement is missing (after line 329):</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Test to see if a 64-bit version of VMD exists</span>
+<span class="c1"># in the installation directory, and use the 64-bit</span>
+<span class="c1"># version if it is there.</span>
+<span class="k">if</span> <span class="o">[</span> -x <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VMDDIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">vmdbasename</span><span class="si">}</span><span class="s2">_LINUXPPC64LE&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nv">ARCH</span><span class="o">=</span>LINUXPPC64LE
+<span class="k">elif</span> <span class="o">[</span> -x <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VMDDIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">vmdbasename</span><span class="si">}</span><span class="s2">_OPENPOWER&quot;</span> <span class="o">]</span>
+    <span class="nv">ARCH</span><span class="o">=</span>OPENPOWER
+<span class="k">else</span>
+    <span class="nv">ARCH</span><span class="o">=</span>SUMMIT
+<span class="k">fi</span>
+</pre></div>
+</td></tr></table><p>Just add the missing <code class="bash"><span class="k">then</span></code> statement, and it will finally work.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Test to see if a 64-bit version of VMD exists</span>
+<span class="c1"># in the installation directory, and use the 64-bit</span>
+<span class="c1"># version if it is there.</span>
+<span class="k">if</span> <span class="o">[</span> -x <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VMDDIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">vmdbasename</span><span class="si">}</span><span class="s2">_LINUXPPC64LE&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nv">ARCH</span><span class="o">=</span>LINUXPPC64LE
+<span class="k">elif</span> <span class="o">[</span> -x <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VMDDIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">vmdbasename</span><span class="si">}</span><span class="s2">_OPENPOWER&quot;</span> <span class="o">]</span>
+<span class="hll"><span class="k">then</span>
+</span>    <span class="nv">ARCH</span><span class="o">=</span>OPENPOWER
+<span class="k">else</span>
+    <span class="nv">ARCH</span><span class="o">=</span>SUMMIT
+<span class="k">fi</span>
+</pre></div>
+</td></tr></table><p>Hope it helps!</p>
+
 		    </div> <!--/#entry-content-->
-        		<span class="tag-links"><strong>Tagged</strong>
- <a href="https://victor-gil-sepulveda.github.io/tag/github-pages.html" rel="tag">Github Pages</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/pelican.html" rel="tag">Pelican</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/vagrant.html" rel="tag">Vagrant</a>        		</span>
 	    </div> <!--/#main-->
     </div>  <!--/#post-->
 </div>
-<div id= "contents">
-    <div class="post type-post status-publish format-standard hentry category-general" id="post">
-	    <div class="entry-meta">
-		    <div class="date"><a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html">Mon 17 October 2016</a></div>
-		    <span class="byline">By <a href="https://victor-gil-sepulveda.github.io/author/victor-a-gil.html">Víctor A. Gil</a></span>
-			    <div class="comments"><a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html#disqus_thread" title="Comment on Blogging with Pelican: First Impressions">comments</a></div>
-			    <span class="cat-links"><a href="https://victor-gil-sepulveda.github.io/category/posts.html" title="View all posts in posts" rel="category tag">posts</a></span>
-	    </div> <!-- /#entry-meta -->
-	    <div class="main">
-		    <h2 class="entry-title">
-			    <a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html" title="Permalink to Blogging with Pelican: First Impressions" rel="bookmark">Blogging with Pelican: First Impressions</a>
-		    </h2>
-		    <div class="entry-content">
-			    <div class="section" id="there-s-a-new-blogger-in-town">
-<h2>There's a new blogger in town!</h2>
-<p>It was the year 2014. I was young and inexperienced <a class="footnote-reference" href="#id3" id="id1">[1]</a>, and I wanted to start a web log. At that time I was coursing a PhD, which is a well known way of being poor for the rest of your life <a class="footnote-reference" href="#id4" id="id2">[2 ...</a></p></div>
-		    </div> <!--/#entry-content-->
-        		<span class="tag-links"><strong>Tagged</strong>
- <a href="https://victor-gil-sepulveda.github.io/tag/pelican.html" rel="tag">Pelican</a>        		</span>
-	    </div> <!--/#main-->
-    </div>  <!--/#post-->
-</div><div class="navigation">
-</div>
+
+	<div id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'thelostlibraryofagraphur';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+    </div><!-- #comments -->
+
 		</div>
 		
 		<div id="footer">
