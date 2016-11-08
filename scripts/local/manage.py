@@ -80,13 +80,13 @@ def publish(verbose):
 
     # Clean up the directory if it exists
     command = "if [ -d %s ]; then rm -rf %s; fi;"%(OUT_DIR, OUT_DIR)
-    #os.system(command)
+    os.system(command)
     if verbose: print command
 
     # This is run in the vm system and copy everything to the shared folder;
     # Symlinks are converted to their copied counterparts
     command = "vagrant ssh -c '/vagrant/scripts/vagrant/publish.sh %s %s'"%(OUT_DIR, "-v" if verbose else "")
-    #os.system(command)
+    os.system(command)
     if verbose: print command
 
     # Then ghp-import is used to publish it (to the master branch).
