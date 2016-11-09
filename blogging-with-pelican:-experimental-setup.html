@@ -85,9 +85,9 @@
 			    <a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html" title="Permalink to Blogging with Pelican: Experimental Setup" rel="bookmark">Blogging with Pelican: Experimental Setup</a>
 		    </h2>
 		    <div class="entry-content">
-			    <!-- PELICAN_BEGIN_SUMMARY -->
+			    
 <p>Before getting serious into blogging with Pelican, there are two main concerns that must be solved: how to isolate it and all its dependencies from your current Python installation, and how to effectively manage version control.</p>
-<!-- PELICAN_END_SUMMARY -->
+
 <p>For the first issue, the usual recommendation is to install Pelican in a new Python environment (e.g. using <a class="reference external" href="https://virtualenv.pypa.io/en/stable/">virtualenv</a>)with and to always work using it. I totally hate environment-based setups. Do not ask me why, I have not found any reason but laziness.</p>
 <p>Solving the second one can be a bit tricky. In every Pelican project you can distinguish up to 3 main &quot;areas&quot; of your workspace. The first one is the root folder itself, which contains the configuration and the theme you want to use. The second is the &quot;contents&quot; folder, which holds the source files that will generate your blog's posts and pages. And the third one is the &quot;output&quot; folder, which holds the actual HTML of the posts and pages, plus all the other goodies that must be uploaded in order to have a working web page. So, at the end of the day one can distinguish between two main group of files, the source ones and the generated ones. The problem here is that, in order to publish your blog using Github pages, you must commit only the contents of your &quot;output&quot; folder to the repository, but not the source ones (which you may want to commit somewhere else in order to track your changes!).</p>
 <p>The customary solution for this consists in creating two different repositories, one for the source files and the other for publishing (&quot;output&quot; folder). The &quot;output&quot; repository is eventually included into the other as a submodule.</p>
