@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-		<title>The lost library of Agraphur</title>
+		<title>The lost library of Agraphur &mdash; Blogging with Pelican: The Management Script</title>
 		<meta charset="utf-8" />
 		
 		<!-- Fonts from google fonts -->
@@ -71,6 +71,7 @@
 	
 		<div > <!--id="contents"-->
 
+
 <div id= "contents">
     <div class="post type-post status-publish format-standard hentry category-general" id="post">
 	    <div class="entry-meta">
@@ -87,75 +88,68 @@
 			    
 <p>At some point, when you start to do serious blogging, automation is needed. To be honest, this is not my case right now (I just wrote three posts so far in my new blog incarnation, which does not look too serious), but it is always fun to try new things.</p>
 
-		    </div> <!--/#entry-content-->
-	    </div> <!--/#main-->
-    </div>  <!--/#post-->
+<p>The main goal here is to create a Python script that helps us performing some common operations that can be identified as part of the blogging work flow, like:</p>
+<ul class="simple">
+<li>Creating new empty pages and posts (<em>new_page</em>, <em>new_post</em>)</li>
+<li>Starting the development web server (<em>serve</em>)</li>
+<li>Cleaning the symlink structure (<em>remove_symlinks</em>)</li>
+<li>Publishing changes to Github (<em>publish</em>)</li>
+</ul>
+<p>For the command line interface parsing, I wanted to try <a class="reference external" href="https://github.com/willyg302/clip.py">clip.py</a> as an alternative to the well-known <em>optparse</em> module. This tiny package allows to define the commands, arguments and options of your script in a declarative way by using Python decorators.</p>
+<p>You can find the complete script <a class="reference external" href="https://github.com/victor-gil-sepulveda/victor-gil-sepulveda.github.io/blob/source/scripts/local/manage.py">here</a>.</p>
+<div class="section" id="creating-new-empty-pages-and-posts">
+<h2>Creating new empty pages and posts</h2>
+<p>The idea (and part of the code) comes from <a class="reference external" href="http://nafiulis.me/making-a-static-blog-with-pelican.html">this page</a>. Basically, this command uses two reStructured Text templates, one for the <a class="reference external" href="https://github.com/victor-gil-sepulveda/victor-gil-sepulveda.github.io/blob/source/scripts/local/new_page.template">pages</a> and other for the <a class="reference external" href="https://github.com/victor-gil-sepulveda/victor-gil-sepulveda.github.io/blob/source/scripts/local/new_post.template">posts</a>, and populates the title, date etc. with proper values. Then it writes them to the /content/pages or content/posts folders. This is exactly the same that Octopress did, but with less magic.</p>
 </div>
-<div id= "contents">
-    <div class="post type-post status-publish format-standard hentry category-general" id="post">
-	    <div class="entry-meta">
-		    <div class="date"><a href="https://victor-gil-sepulveda.github.io/how-to-run-vmd-1.9.3-beta-4-for-linux.html">Tue 08 November 2016</a></div>
-		    <span class="byline">By <a href="https://victor-gil-sepulveda.github.io/author/victor-a-gil.html">Víctor A. Gil</a></span>
-			    <div class="comments"><a href="https://victor-gil-sepulveda.github.io/how-to-run-vmd-1.9.3-beta-4-for-linux.html#disqus_thread" title="Comment on How to run VMD 1.9.3 beta 4 for Linux">comments</a></div>
-			    <span class="cat-links"><a href="https://victor-gil-sepulveda.github.io/category/posts.html" title="View all posts in posts" rel="category tag">posts</a></span>
-	    </div> <!-- /#entry-meta -->
-	    <div class="main">
-		    <h2 class="entry-title">
-			    <a href="https://victor-gil-sepulveda.github.io/how-to-run-vmd-1.9.3-beta-4-for-linux.html" title="Permalink to How to run VMD 1.9.3 beta 4 for Linux" rel="bookmark">How to run VMD 1.9.3 beta 4 for Linux</a>
-		    </h2>
-		    <div class="entry-content">
-			    
-<p><a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a> is, without any doubt, one of the most used free molecular visualizers out there. The only problem this software has is that the guys of the T&amp;CB group at the university of Illinois do not update it very often. We must be happy then that a new beta version has landed the last 28th of October.</p>
+<div class="section" id="starting-the-development-web-server">
+<h2>Starting the development web server</h2>
+<p>I also needed a way to perform quick tests with the new posts. This involves to start the VM and start the development server. In order to manage the VM with vagrant from the script I use the handy <a class="reference external" href="https://github.com/todddeluca/python-vagrant">python-vagrant</a> Python module. Once the VM is up, the script calls an inner VM bash script through an ssh command.</p>
+<p>The problem with the development server is that it cannot recover from errors. If an error happens, one has to enter the VM, kill the process and restart the server (if needed).</p>
+<p>This command does not automatically stop the VM.</p>
+</div>
+<div class="section" id="cleaning-the-symlink-structure">
+<h2>Cleaning the symlink structure</h2>
+<p>A script is executed whenever a vagrant up event happens, in order to recreate the blog workspace. This generates tones of symbolic links in the host, that can become burden if using <em>git</em> for version control, as it treats links as regular files. Before issuing a git status command, it is convenient to remove this symbolic links.</p>
+</div>
+<div class="section" id="publishing-changes-to-github">
+<h2>Publishing changes to Github</h2>
+<p>Every time I want to publish the changes I have to start the virtual machine, generate the publish version of the blog and upload it to the repository. The script starts the VM using <a class="reference external" href="https://github.com/todddeluca/python-vagrant">python-vagrant</a>, then it issues an ssh command that runs a script in the host. This script  is in charge of generating the files and moving the results to the shared folder. Finally it uses <a class="reference external" href="https://github.com/davisp/ghp-import">ghp-import</a> to move the newly created files to the master branch of the repository in Github Pages so that they get published.</p>
+<p>Again, the script does not stop the VM, so in case halting the VM it is needed, it must be done manually.</p>
+</div>
+<div class="section" id="adding-simple-bash-completion">
+<h2>Adding simple bash completion</h2>
+<p>It is very cool to have a script that allows you to automate tasks, but it is even cooler if you do not have to write too much in order to use it. That is why I tried to add a simple autocompletion feature to the script.</p>
+<p>I have investigated how this kind of autocompletion could be done with Python and ... well ... it looks like it cannot be done. At least directly. But it is quite easy to add 1st level autocompletion to a Bash script. The solution is then to create a Bash script wrapper for the Python script. Unnecessarily complex? yes, but this is another of these things I just do for the sake of learning.</p>
+<p><a class="reference external" href="https://www.gnu.org/software/bash/manual/bashref.html#Programmable-Completion-Builtins">This page</a> explains how to use the autocompletion mechanisms of Bash. Basically, one has to register the words to be used for autocompletion by adding this line to your <em>.bashrc</em> file:</p>
+<div class="highlight"><pre><span></span><span class="nb">complete</span> -W <span class="s2">&quot;new_page new_post publish remove_symlinks serve&quot;</span> blog_manage
+</pre></div>
+<p>Obviously the <em>blog_manage</em> bash script is already in our PATH.</p>
+<p>Take care!</p>
+</div>
 
 		    </div> <!--/#entry-content-->
 	    </div> <!--/#main-->
     </div>  <!--/#post-->
 </div>
-<div id= "contents">
-    <div class="post type-post status-publish format-standard hentry category-general" id="post">
-	    <div class="entry-meta">
-		    <div class="date"><a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html">Tue 25 October 2016</a></div>
-		    <span class="byline">By <a href="https://victor-gil-sepulveda.github.io/author/victor-a-gil.html">Víctor A. Gil</a></span>
-			    <div class="comments"><a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html#disqus_thread" title="Comment on Blogging with Pelican: Experimental Setup">comments</a></div>
-			    <span class="cat-links"><a href="https://victor-gil-sepulveda.github.io/category/posts.html" title="View all posts in posts" rel="category tag">posts</a></span>
-	    </div> <!-- /#entry-meta -->
-	    <div class="main">
-		    <h2 class="entry-title">
-			    <a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html" title="Permalink to Blogging with Pelican: Experimental Setup" rel="bookmark">Blogging with Pelican: Experimental Setup</a>
-		    </h2>
-		    <div class="entry-content">
-			    
-<p>Before getting serious into blogging with Pelican, there are two main concerns that must be solved: how to isolate it and all its dependencies from your current Python installation, and how to effectively manage version control.</p>
 
-		    </div> <!--/#entry-content-->
-        		<span class="tag-links"><strong>Tagged</strong>
- <a href="https://victor-gil-sepulveda.github.io/tag/github-pages.html" rel="tag">Github Pages</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/pelican.html" rel="tag">Pelican</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/vagrant.html" rel="tag">Vagrant</a>        		</span>
-	    </div> <!--/#main-->
-    </div>  <!--/#post-->
-</div>
-<div id= "contents">
-    <div class="post type-post status-publish format-standard hentry category-general" id="post">
-	    <div class="entry-meta">
-		    <div class="date"><a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html">Mon 17 October 2016</a></div>
-		    <span class="byline">By <a href="https://victor-gil-sepulveda.github.io/author/victor-a-gil.html">Víctor A. Gil</a></span>
-			    <div class="comments"><a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html#disqus_thread" title="Comment on Blogging with Pelican: First Impressions">comments</a></div>
-			    <span class="cat-links"><a href="https://victor-gil-sepulveda.github.io/category/posts.html" title="View all posts in posts" rel="category tag">posts</a></span>
-	    </div> <!-- /#entry-meta -->
-	    <div class="main">
-		    <h2 class="entry-title">
-			    <a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html" title="Permalink to Blogging with Pelican: First Impressions" rel="bookmark">Blogging with Pelican: First Impressions</a>
-		    </h2>
-		    <div class="entry-content">
-			    
-<p>Starting a blog with Pelican is incredibly easy. Just use the &quot;quickstart&quot; script and download a theme. You will have a complete blog in a matter of minutes. And, also very important, you will not end with cluttered workspace: in its simplest form, Pelican just needs a contents folder and a couple of configuration scripts. Which are written in Python too. Delightful.</p>
+	<div id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'thelostlibraryofagraphur';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+    </div><!-- #comments -->
 
-		    </div> <!--/#entry-content-->
-        		<span class="tag-links"><strong>Tagged</strong>
- <a href="https://victor-gil-sepulveda.github.io/tag/pelican.html" rel="tag">Pelican</a>        		</span>
-	    </div> <!--/#main-->
-    </div>  <!--/#post-->
-</div><div class="navigation">
-</div>
 		</div>
 		
 		<div id="footer">
