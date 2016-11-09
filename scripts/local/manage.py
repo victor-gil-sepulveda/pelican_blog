@@ -77,7 +77,12 @@ def remove_symlinks():
 @clip.flag('-v', '--verbose', help='Verbose flag')
 def publish(verbose):
     OUT_DIR = "ghp-output"
-
+    
+    # Start the VM
+    vagrant_handler = vagrant.Vagrant()
+    if vagrant_handler.status()[0].state != "running":
+        vagrant_handler.up()
+    
     # Clean up the directory if it exists
     command = "if [ -d %s ]; then rm -rf %s; fi;"%(OUT_DIR, OUT_DIR)
     os.system(command)

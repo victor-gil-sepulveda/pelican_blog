@@ -19,7 +19,7 @@ How to run VMD 1.9.3 beta 4 for Linux
 
 The problem of beta versions is that, well, they are beta. Beta versions are considered to be unstable and contain unknown bugs that users can discover and report. Isn't it fun?
 
-In this case, a minor error avoids some users from enjoying this marvelous software. In order to install it in a 64 bit Linux machine, just download the proper tar.gz file (e.g. *LINUX\_64\ OpenGL,\ CUDA,\ OptiX,\ OSPRay*), unzip it wherever you want, enter the folder and run ./configure with the options you want (running it without options will print them). To be honest, I do not really know if the options you choose will modify the final result. This is an example:
+In this case, a minor error avoids some users from enjoying this marvelous software. In order to install it in a 64 bit Linux machine, just download the proper tar.gz file (e.g. *LINUX\_64\ OpenGL,\ CUDA,\ OptiX,\ OSPRay*), uncompress it wherever you want, enter the folder and run ./configure with the options you want (running it without options will print them). To be honest, I do not really know if the options you choose will modify the final result. This is an example:
 
 .. code-block:: bash
 
