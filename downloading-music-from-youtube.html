@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-		<title>The lost library of Agraphur &mdash; Articles tagged Pelican</title>
+		<title>The lost library of Agraphur &mdash; Downloading music from Youtube</title>
 		<meta charset="utf-8" />
 		
 		<!-- Fonts from google fonts -->
@@ -66,58 +66,56 @@
 		</div><!-- /#menu -->
 		
 		<div class="page-title">
-<div class="page-title">
-	<h2>Tagged with <span>Pelican</span> &hellip;</h2>
-</div>
 		</div>
 	
 		<div > <!--id="contents"-->
 
+
 <div id= "contents">
     <div class="post type-post status-publish format-standard hentry category-general" id="post">
 	    <div class="entry-meta">
-		    <div class="date"><a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html">Tue 25 October 2016</a></div>
+		    <div class="date"><a href="https://victor-gil-sepulveda.github.io/downloading-music-from-youtube.html">Thu 15 December 2016</a></div>
 		    <span class="byline">By <a href="https://victor-gil-sepulveda.github.io/author/victor-a-gil.html">Víctor A. Gil</a></span>
-			    <div class="comments"><a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html#disqus_thread" title="Comment on Blogging with Pelican: Experimental Setup">comments</a></div>
+			    <div class="comments"><a href="https://victor-gil-sepulveda.github.io/downloading-music-from-youtube.html#disqus_thread" title="Comment on Downloading music from Youtube">comments</a></div>
 			    <span class="cat-links"><a href="https://victor-gil-sepulveda.github.io/category/posts.html" title="View all posts in posts" rel="category tag">posts</a></span>
 	    </div> <!-- /#entry-meta -->
 	    <div class="main">
 		    <h2 class="entry-title">
-			    <a href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-experimental-setup.html" title="Permalink to Blogging with Pelican: Experimental Setup" rel="bookmark">Blogging with Pelican: Experimental Setup</a>
+			    <a href="https://victor-gil-sepulveda.github.io/downloading-music-from-youtube.html" title="Permalink to Downloading music from Youtube" rel="bookmark">Downloading music from Youtube</a>
 		    </h2>
 		    <div class="entry-content">
-			    
-<p>Before getting serious into blogging with Pelican, there are two main concerns that must be solved: how to isolate it and all its dependencies from your current Python installation, and how to effectively manage version control.</p>
+			    <p>If you like music and Youtube is your main source, I am pretty sure that, at some point, you wanted to save some of the songs to disk. It is not impossible, indeed there are a million tools out there targeting this same problem. My personal choice has always been <a class="reference external" href="http://jdownloader.org/">JDownloader</a>, but I must say this is not the best software you can find: it is heavy and it is very obscure.</p>
+
+<p>The last time I had to reinstall my OS (that is, two weeks ago) I decided to look for something lighter than JDownloader. After a not-so-long search I found <a class="reference external" href="http://rg3.github.io/youtube-dl/">youtube-dl</a>, a very powerful command line video downloader for Youtube.</p>
+
+<p>youtube-dl is great. It is really easy to use, and it works like a charm, but it downloads videos, not sound files. This means a bit of postprocessing is needed. Thanks to God I found an incredibly handy <a class="reference external" href="http://www.linuxjournal.com/content/grabbing-your-music-youtube-do-it-your-way">post from Emre Sevinc in Linux Journal</a>. Here, he explains how to postprocess the downloaded video using ffmpeg and also offers a bash script to automate the job (which I will not reproduce here, just go to the original article and C-c C-p !!).</p>
+<p>So, the next time you feel the urge of downloading some music from Youtube, just stay apart from all those über-complex contraptions hanging around. Use the command line!</p>
 
 		    </div> <!--/#entry-content-->
         		<span class="tag-links"><strong>Tagged</strong>
- <a href="https://victor-gil-sepulveda.github.io/tag/github-pages.html" rel="tag">Github Pages</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/pelican.html" rel="tag">Pelican</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/vagrant.html" rel="tag">Vagrant</a>        		</span>
+ <a href="https://victor-gil-sepulveda.github.io/tag/download.html" rel="tag">download</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/ffmpeg.html" rel="tag">ffmpeg</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/memory.html" rel="tag">memory</a>,  <a href="https://victor-gil-sepulveda.github.io/tag/youtube.html" rel="tag">Youtube</a>        		</span>
 	    </div> <!--/#main-->
     </div>  <!--/#post-->
 </div>
-<div id= "contents">
-    <div class="post type-post status-publish format-standard hentry category-general" id="post">
-	    <div class="entry-meta">
-		    <div class="date"><a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html">Mon 17 October 2016</a></div>
-		    <span class="byline">By <a href="https://victor-gil-sepulveda.github.io/author/victor-a-gil.html">Víctor A. Gil</a></span>
-			    <div class="comments"><a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html#disqus_thread" title="Comment on Blogging with Pelican: First Impressions">comments</a></div>
-			    <span class="cat-links"><a href="https://victor-gil-sepulveda.github.io/category/posts.html" title="View all posts in posts" rel="category tag">posts</a></span>
-	    </div> <!-- /#entry-meta -->
-	    <div class="main">
-		    <h2 class="entry-title">
-			    <a href="https://victor-gil-sepulveda.github.io/theres_a_new_bloger.html" title="Permalink to Blogging with Pelican: First Impressions" rel="bookmark">Blogging with Pelican: First Impressions</a>
-		    </h2>
-		    <div class="entry-content">
-			    
-<p>Starting a blog with Pelican is incredibly easy. Just use the &quot;quickstart&quot; script and download a theme. You will have a complete blog in a matter of minutes. And, also very important, you will not end with cluttered workspace: in its simplest form, Pelican just needs a contents folder and a couple of configuration scripts. Which are written in Python too. Delightful.</p>
 
-		    </div> <!--/#entry-content-->
-        		<span class="tag-links"><strong>Tagged</strong>
- <a href="https://victor-gil-sepulveda.github.io/tag/pelican.html" rel="tag">Pelican</a>        		</span>
-	    </div> <!--/#main-->
-    </div>  <!--/#post-->
-</div><div class="navigation">
-</div>
+	<div id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'thelostlibraryofagraphur';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+    </div><!-- #comments -->
+
 		</div>
 		
 		<div id="footer">
