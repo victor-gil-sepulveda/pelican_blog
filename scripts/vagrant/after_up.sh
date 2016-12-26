@@ -10,6 +10,9 @@ if [ -d /home/vagrant/blog ]; then
 fi
 
 # Regenerates Pelican blog
+# As to 26/12/2016 the quickstart script looks to have a problem at
+# line 'lang': "en" ,#locale.getlocale()[0].split('_')[0],
+sudo sed -i '52s/.*/"lang":"en",/' /usr/local/lib/python2.7/dist-packages/pelican/tools/pelican_quickstart.py
 python /vagrant/scripts/vagrant/auto_quickstart.py
 rm -rf blog/content
 
