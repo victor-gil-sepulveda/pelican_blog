@@ -5,9 +5,71 @@
 
 &lt;p&gt;The last time I had to reinstall my OS (that is, two weeks ago) I decided to look for something lighter than JDownloader. After a not-so-long search I found &lt;a class="reference external" href="http://rg3.github.io/youtube-dl/"&gt;youtube-dl&lt;/a&gt;, a very powerful command line video downloader for Youtube.&lt;/p&gt;
 
-&lt;p&gt;youtube-dl is great. It is really easy to use, and it works like a charm, but it downloads videos, not sound files. This means a bit of postprocessing is needed. Thanks to God I found an incredibly handy &lt;a class="reference external" href="http://www.linuxjournal.com/content/grabbing-your-music-youtube-do-it-your-way"&gt;post from Emre Sevinc in Linux Journal&lt;/a&gt;. Here, he explains how to postprocess the downloaded video using ffmpeg and also offers a bash script to automate the job (which I will not reproduce here, just go to the original article and C-c C-p !!).&lt;/p&gt;
-&lt;p&gt;So, the next time you feel the urge of downloading some music from Youtube, just stay apart from all those über-complex contraptions hanging around. Use the command line!&lt;/p&gt;
-</content><category term="memory"></category><category term="Youtube"></category><category term="download"></category><category term="ffmpeg"></category></entry><entry><title>Blogging with Pelican: The Management Script</title><link href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-the-management-script.html" rel="alternate"></link><published>2016-11-09T11:06:00+01:00</published><updated>2016-11-09T11:06:00+01:00</updated><author><name>Víctor A. Gil</name></author><id>tag:victor-gil-sepulveda.github.io,2016-11-09:/blogging-with-pelican:-the-management-script.html</id><summary type="html">
+&lt;p&gt;youtube-dl is great. It is really easy to use, and it works like a charm, but it downloads videos, not sound files. This means a bit of postprocessing is needed. Thanks to God I found an incredibly handy &lt;a class="reference external" href="http://www.linuxjournal.com/content/grabbing-your-music-youtube-do-it-your-way"&gt;post from Emre Sevinc in Linux Journal&lt;/a&gt;. There, he explains how to postprocess the downloaded video using ffmpeg and lame, and also offers a bash script to automate the job (which I will not reproduce here, just go to the original article and C-c C-p !!). The script however has some flaws that may be caused by its age (the original post is from 2011!):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;It expects youtube-dl to download only &lt;em&gt;flv&lt;/em&gt; files, which is not true anymore.&lt;/li&gt;
+&lt;li&gt;The two-step conversion using ffmpeg and lame could have been handled in a more elegant way with a one-liner like &lt;code&gt;ffmpeg -i [input] -vn -c:a libmp3lame [ouput].mp3&lt;/code&gt;. However, this is a matter of taste.&lt;/li&gt;
+&lt;li&gt;It does not make the most of the newest flags youtube-dl has. And this one is crucial.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="a-new-script-using-python"&gt;
+&lt;h2&gt;A new script using Python&lt;/h2&gt;
+&lt;p&gt;I must admit that my first impulse was to &amp;quot;fix&amp;quot; the bash script, but then I thought that maybe writing something similar would be quite easy in Python. And I did it. My final goal was to have something able to download the videos using a batch url file, and rename them if a new name was provided. The type of batch file I wanted to use was:&lt;/p&gt;
+&lt;pre class="code bash literal-block"&gt;
+url1 rename to this
+url2 rename to that
+url3
+url4 rename again
+...
+&lt;/pre&gt;
+&lt;p&gt;The code can be download from in my Github repo (&lt;a class="reference external" href="https://github.com/victor-gil-sepulveda/YoutubeMusicDownloader"&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="youtube-dl-new-command-line-options"&gt;
+&lt;h2&gt;Youtube-dl new command line options&lt;/h2&gt;
+&lt;p&gt;As I already said youtube-dl comes with a lot of new functionalities. For instance, it is possible to ask only for the audio tracks and convert them, with something like this:&lt;/p&gt;
+&lt;pre class="code bash literal-block"&gt;
+&amp;gt; youtube-dl &lt;span class="o"&gt;[&lt;/span&gt;url&lt;span class="o"&gt;]&lt;/span&gt; -x --audio-format mp3 --audio-quality 0
+&lt;/pre&gt;
+&lt;p&gt;That means: Download the music (-x) from [url], and convert it to mp3 (--audio-format mp3) with maximum possible quality (--audio-quality 0).&lt;/p&gt;
+&lt;p&gt;So, this does exactly what Emre Sevinc's bash script was doing, converting it automatically in a redundant piece of software.&lt;/p&gt;
+&lt;p&gt;Also, it is possible to use a batch file to provide urls. This batch file has the form:&lt;/p&gt;
+&lt;pre class="code bash literal-block"&gt;
+url1
+url2
+...
+urln
+&lt;/pre&gt;
+&lt;p&gt;And with a line like this one:&lt;/p&gt;
+&lt;pre class="code bash literal-block"&gt;
+&amp;gt; youtube-dl -a &lt;span class="o"&gt;[&lt;/span&gt;batch file&lt;span class="o"&gt;]&lt;/span&gt; -x --audio-format mp3 --audio-quality 0
+&lt;/pre&gt;
+&lt;p&gt;youtube-dl will download the music of all urls. This does exactly the same than my script (except for the renaming). Even the batch files can be used interchangeably. And this makes my 100 lines script redundant too. Or not?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parallelization"&gt;
+&lt;h2&gt;Parallelization&lt;/h2&gt;
+&lt;p&gt;The batch mode of youtube-dl has only one minor problem (imho), it treats each url in a serial fashion. This looks like the kind of problems where task-level parallelization could improve the overall performance a lot. To this end I used &lt;a class="reference external" href="https://github.com/victor-gil-sepulveda/pyScheduler"&gt;pyScheduler&lt;/a&gt; . The changes were minimum:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Detect and extract the task to a function&lt;/li&gt;
+&lt;li&gt;Create a scheduler and add the tasks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The results are pretty good when compared with youtube-dl batch mode. I have tested the script using a batch file of small videos (with a lot of versions of the beautiful &amp;quot;Moon River&amp;quot;) and another one that includes longer videos. Downloading them using youtube-dl's batch mode took an average of around 89s. My parallelized script was faster in all cases when using more than one process. It is worth to mention that pyScheduler uses one process as a master controller, so the &amp;quot;real&amp;quot; number of processes used is always n-1. That is why, when the script detects an n &amp;lt;= 2, it defaults to the serial scheduler, which is more efficient.&lt;/p&gt;
+&lt;p&gt;The average results for the &amp;quot;small batch&amp;quot; are shown in the plot below (times averaged over 10 runs, except in the last case, where I did only 5 runs).&lt;/p&gt;
+&lt;img alt="Plot 1" src="https://victor-gil-sepulveda.github.io/images/2016_12_15_downloading-music-from-youtube__small_time.png" style="width: 600px;" /&gt;
+&lt;p&gt;As you can see, the serial behaviour (for n = 2, n = 1 was omitted) is very similar (speedup around &lt;em&gt;1x&lt;/em&gt;). The maximum speedups is obtained with 6 processes (&lt;em&gt;1.8x&lt;/em&gt;), but it is obvious that increasing the number of processes above 5 does not throw better results. The performance decreases slightly when using 7 processes, which may be related with the fact that my CPU has only 6 cores (I had to try ^.^u ).  Indeed the most noticeable gain is obtained using only 3 processes (2 worker processes).&lt;/p&gt;
+&lt;p&gt;[BIG ANALYSIS BEING COOKED!]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="final-words"&gt;
+&lt;h2&gt;Final words&lt;/h2&gt;
+&lt;p&gt;Youtube-dl is an incredibly complete tool to download audio and videos from Youtube. Its batch mode open the doors to really naughty uses like audio scrapping (for research purposes, of course).&lt;/p&gt;
+&lt;p&gt;The parallelization of my batch script looks to have had an interesting outcome. A small number of processes can increase the performance almost &lt;em&gt;1.5x&lt;/em&gt;, which is not that bad. The script could be improved, of course. Some of these improvements would include to not overlap ffmpeg conversions (it may use more than one core and produce a bottleneck) and improving the load balance. Of course, this would mean to have finer control over youtube-dl, and also to code some more hundred lines of code.&lt;/p&gt;
+&lt;p&gt;Remember that musicians are not photosynthetic (yet) and they need your money to live. If you like their music, consider contributing with their work by buying original discs and going to their concerts.&lt;/p&gt;
+&lt;p&gt;But, anyway, the next time you feel the urge of downloading some music from Youtube, just stay apart from all those über-complex contraptions hanging around. Use the command line!&lt;/p&gt;
+&lt;p&gt;Take care!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="memory"></category><category term="Youtube"></category><category term="download"></category><category term="ffmpeg"></category><category term="parallel"></category><category term="pyScheduler"></category><category term="Python"></category></entry><entry><title>Blogging with Pelican: The Management Script</title><link href="https://victor-gil-sepulveda.github.io/blogging-with-pelican:-the-management-script.html" rel="alternate"></link><published>2016-11-09T11:06:00+01:00</published><updated>2016-11-09T11:06:00+01:00</updated><author><name>Víctor A. Gil</name></author><id>tag:victor-gil-sepulveda.github.io,2016-11-09:/blogging-with-pelican:-the-management-script.html</id><summary type="html">
 &lt;p&gt;At some point, when you start to do serious blogging, automation is needed. To be honest, this is not my case right now (I just wrote three posts so far in my new blog incarnation, which does not look too serious), but it is always fun to try new things.&lt;/p&gt;
 </summary><content type="html">
 &lt;p&gt;At some point, when you start to do serious blogging, automation is needed. To be honest, this is not my case right now (I just wrote three posts so far in my new blog incarnation, which does not look too serious), but it is always fun to try new things.&lt;/p&gt;
