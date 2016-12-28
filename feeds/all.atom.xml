@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The lost library of Agraphur</title><link href="https://victor-gil-sepulveda.github.io/" rel="alternate"></link><link href="https://victor-gil-sepulveda.github.io/feeds/all.atom.xml" rel="self"></link><id>https://victor-gil-sepulveda.github.io/</id><updated>2016-12-15T21:13:00+01:00</updated><entry><title>Downloading music from Youtube</title><link href="https://victor-gil-sepulveda.github.io/downloading-music-from-youtube.html" rel="alternate"></link><published>2016-12-15T21:13:00+01:00</published><updated>2016-12-15T21:13:00+01:00</updated><author><name>Víctor A. Gil</name></author><id>tag:victor-gil-sepulveda.github.io,2016-12-15:/downloading-music-from-youtube.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The lost library of Agraphur</title><link href="https://victor-gil-sepulveda.github.io/" rel="alternate"></link><link href="https://victor-gil-sepulveda.github.io/feeds/all.atom.xml" rel="self"></link><id>https://victor-gil-sepulveda.github.io/</id><updated>2016-12-28T09:54:00+01:00</updated><entry><title>Meetup Photo Downloader: download all your Meetup event photos at once</title><link href="https://victor-gil-sepulveda.github.io/meetupphotodownloader:-download-all-your-meetup-event-photos-at-once.html" rel="alternate"></link><published>2016-12-28T09:54:00+01:00</published><updated>2016-12-28T09:54:00+01:00</updated><author><name>Víctor A. Gil</name></author><id>tag:victor-gil-sepulveda.github.io,2016-12-28:/meetupphotodownloader:-download-all-your-meetup-event-photos-at-once.html</id><summary type="html">
+&lt;p&gt;Recently I rediscovered &lt;a class="reference external" href="https://www.meetup.com"&gt;Meetup&lt;/a&gt;. It is a web platform where people can propose and join events that range from tech talks to mountain hikes. It offers tools to contact the people, organizing the event and, eventually, to upload photos. Users can upload groups of photos in a very convenient way, but the problem comes when another user wants to download them: she has to download them one by one. I have been there: it is quite tedious.&lt;/p&gt;
+</summary><content type="html">
+&lt;p&gt;Recently I rediscovered &lt;a class="reference external" href="https://www.meetup.com"&gt;Meetup&lt;/a&gt;. It is a web platform where people can propose and join events that range from tech talks to mountain hikes. It offers tools to contact the people, organizing the event and, eventually, to upload photos. Users can upload groups of photos in a very convenient way, but the problem comes when another user wants to download them: she has to download them one by one. I have been there: it is quite tedious.&lt;/p&gt;
+
+&lt;p&gt;The goal of this project was to create a &lt;strong&gt;static web application&lt;/strong&gt; that automates the downloading of all the photos related to a Meetup event. The idea is that the user selects a group and the event he is interested in, and then the web app downloads all the photos in a nicely packed in a zip file. As easy as that!&lt;/p&gt;
+&lt;p&gt;The Meetup Photo Downloader has been uploaded &lt;a class="reference external" href="http://www.thelostlib.com/MeetupPhotoDownloader/"&gt;here&lt;/a&gt;. The code has been released under MIT license, and can be found &lt;a class="reference external" href="https://github.com/victor-gil-sepulveda/MeetupPhotoDownloader"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="technologies-and-methods-used"&gt;
+&lt;h2&gt;Technologies and methods used&lt;/h2&gt;
+&lt;div class="section" id="jquery"&gt;
+&lt;h3&gt;Jquery&lt;/h3&gt;
+&lt;p&gt;Even if there are other alternatives for HTML manipulation, this is the one I am more comfortable with. I did not learn new things about it, but it is always useful to remember!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="meetup-rest-api"&gt;
+&lt;h3&gt;Meetup REST API&lt;/h3&gt;
+&lt;p&gt;In order to get the user data from Meetup I have used their &lt;a class="reference external" href="https://www.meetup.com/es-ES/meetup_api/"&gt;API&lt;/a&gt;. Whatever you can do with their platform you can do it with their API. Using their endpoints is not trivial, but after reviewing their documentation a couple of times, and going through the examples, it becomes doable.&lt;/p&gt;
+&lt;p&gt;The API cannot be used without being an valid Meetup user, that is why the first thing the app needs to login into meetup in order to get a session key. This is achieved by redirecting to a login URL, which, after the login, will redirect again to the return page you have specified. The redirected url will contain the needed session data, and has to be parsed.&lt;/p&gt;
+&lt;p&gt;The scheme to use the other API calls is easier. One just needs to connect to the endpoint and GET the JSON data. I just used two of them, one to obtain the group and event information, and the other to retrieve the photos for a given event.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="image-downloading"&gt;
+&lt;h3&gt;Image downloading&lt;/h3&gt;
+&lt;p&gt;Downloading an image from a server in a different domain can be a pain in the ass. Period. Thanks to God I am not the first one having this issue. Henry Algus shows &lt;a class="reference external" href="http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/"&gt;here&lt;/a&gt; a suitable way to address this problem, along with a JQuery plugin.&lt;/p&gt;
+&lt;p&gt;The code needed to download a photo becomes:&lt;/p&gt;
+&lt;pre class="code javascript literal-block"&gt;
+&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ajax&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+            &lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;URL&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GET&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nx"&gt;crossDomain&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nx"&gt;xhrFields&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;cors&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+            &lt;span class="nx"&gt;dataType&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'binary'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nx"&gt;processData&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt;&lt;span class="p"&gt;(...)&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fail&lt;/span&gt;&lt;span class="p"&gt;(...)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="responsive-design"&gt;
+&lt;h3&gt;Responsive design&lt;/h3&gt;
+&lt;p&gt;I also wanted to experiment with responsive design, i.e. a design that changes as the screen size varies.&lt;/p&gt;
+&lt;p&gt;For the layout I used &lt;a class="reference external" href="http://getskeleton.com/"&gt;skeleton.js&lt;/a&gt;, more specifically, its grid feature. Skeleton allows the designer to define grids and rows that will stack gracefully when the viewport size decreases.&lt;/p&gt;
+&lt;p&gt;For the responsive image header I used the &amp;lt;picture&amp;gt; tag. I decided that I wanted to try with an svg image first. If the browser cannot render &lt;em&gt;svg&lt;/em&gt;, the fallback is a set of png images of decreasing size, each associated with a different range of viewport sizes.&lt;/p&gt;
+&lt;pre class="code html literal-block"&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;picture&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;source&lt;/span&gt; &lt;span class="na"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;image/svg+xml&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;srcset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;img/meetup.svg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;source&lt;/span&gt; &lt;span class="na"&gt;srcset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;img/header.big.png&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;(min-width: 1000px)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;source&lt;/span&gt; &lt;span class="na"&gt;srcset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;img/header.med.png&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;(min-width: 540px)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;source&lt;/span&gt; &lt;span class="na"&gt;srcset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;img/header.sma.png&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;(min-width: 0px)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;img/header.med.png&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Meetup Photo Downloader&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;width:100%;margin-bottom:40px;margin-top:40px;&amp;quot;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;picture&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unit-testing"&gt;
+&lt;h3&gt;Unit testing&lt;/h3&gt;
+&lt;p&gt;I must admit this was one of the things I was most interested into, as I had never used a unit testing approach before with Javascript. For the unit testing I used Node + Mocha + Chai ( &lt;a class="reference external" href="http://nodeguide.com/beginner.html"&gt;this site&lt;/a&gt; gives a good explanation on how to use both).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="callback-hell"&gt;
+&lt;h3&gt;&amp;quot;Callback hell&amp;quot;&lt;/h3&gt;
+&lt;p&gt;I made extensive use of promises and arrays of promises where possible. Again, this is another feature I had never used until now.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="advertisements"&gt;
+&lt;h3&gt;Advertisements&lt;/h3&gt;
+&lt;p&gt;And finally, another thing I never did. I was just curious about how adding adds to a web page felt. I tried with Google adSense, but they did not accept me. Then I tried with Chitika. The experience has been good so far.&lt;/p&gt;
+&lt;p&gt;One of the biggest problems I found was choosing where to place the add banner, specially because it disrupts the design of the page.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="criticism"&gt;
+&lt;h2&gt;Criticism&lt;/h2&gt;
+&lt;p&gt;As with all the other projects I have been coding lately, I did this one for the sake of learning. This means I put more care into some parts ... and less or nothing in some other aspects.&lt;/p&gt;
+&lt;p&gt;One of the things I am less proud off are the modal dialog. In the past I used &lt;a class="reference external" href="https://jqueryui.com/"&gt;JQuery UI&lt;/a&gt; for this, but this time I wanted to do something from scratch. The result really needs some improvement.&lt;/p&gt;
+&lt;p&gt;The markup is full of inline styles (yuck!) which also break the &amp;quot;responsiveness&amp;quot; of the design.&lt;/p&gt;
+&lt;p&gt;I should do a bigger effort into separating the MVC components... and tidy up the main.js file a bit. It is really messy.&lt;/p&gt;
+&lt;p&gt;Finally, in my opinion the most urgent improvements would be to localize the text to more languages (for instance using &lt;a class="reference external" href="https://github.com/eligrey/l10n.js/"&gt;l10n&lt;/a&gt;, to test the remaining parts with a headless browser and to polish the overall design and error handling.&lt;/p&gt;
+&lt;p&gt;I hope the app fits your needs. If not, use the comments to suggest new improvements!!&lt;/p&gt;
+&lt;/div&gt;
+</content></entry><entry><title>Downloading music from Youtube</title><link href="https://victor-gil-sepulveda.github.io/downloading-music-from-youtube.html" rel="alternate"></link><published>2016-12-15T21:13:00+01:00</published><updated>2016-12-15T21:13:00+01:00</updated><author><name>Víctor A. Gil</name></author><id>tag:victor-gil-sepulveda.github.io,2016-12-15:/downloading-music-from-youtube.html</id><summary type="html">
 &lt;p&gt;The last time I had to reinstall my OS (that is, two weeks ago) I decided to look for something lighter than JDownloader. After a not-so-long search I found &lt;a class="reference external" href="http://rg3.github.io/youtube-dl/"&gt;youtube-dl&lt;/a&gt;, a very powerful command line video downloader for Youtube.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;If you like music and Youtube is your main source, I am pretty sure that, at some point, you wanted to save some of the songs to disk. It is not impossible, indeed there are a million tools out there targeting this same problem. My personal choice has always been &lt;a class="reference external" href="http://jdownloader.org/"&gt;JDownloader&lt;/a&gt;, but I must say this is not the best software you can find: it is heavy and it is very obscure.&lt;/p&gt;
 
@@ -59,12 +137,14 @@ urln
 &lt;p&gt;The average results for the &amp;quot;small batch&amp;quot; are shown in the plot below (times averaged over 10 runs, except in the last case, where I did only 5 runs).&lt;/p&gt;
 &lt;img alt="Plot 1" src="https://victor-gil-sepulveda.github.io/images/2016_12_15_downloading-music-from-youtube__small_time.png" style="width: 600px;" /&gt;
 &lt;p&gt;As you can see, the serial behaviour (for n = 2, n = 1 was omitted) is very similar (speedup around &lt;em&gt;1x&lt;/em&gt;). The maximum speedups is obtained with 6 processes (&lt;em&gt;1.8x&lt;/em&gt;), but it is obvious that increasing the number of processes above 5 does not throw better results. The performance decreases slightly when using 7 processes, which may be related with the fact that my CPU has only 6 cores (I had to try ^.^u ).  Indeed the most noticeable gain is obtained using only 3 processes (2 worker processes).&lt;/p&gt;
-&lt;p&gt;[BIG ANALYSIS BEING COOKED!]&lt;/p&gt;
+&lt;p&gt;When trying to download more and larger videos the behaviour looks like this:&lt;/p&gt;
+&lt;img alt="Plot 2" src="https://victor-gil-sepulveda.github.io/images/2016_12_15_downloading-music-from-youtube__big_time.png" style="width: 600px;" /&gt;
+&lt;p&gt;The test was averaged over a minimum of 3 runs (an outlier for n=6 was removed). The plot shows that, again, the maximum performance change is obtained with n=3 (2 &amp;quot;real processes&amp;quot;). Given that youtube-dl took around 711s to download the files, the speedup for n=3 is already a not-that-bad &lt;em&gt;1.3x&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="final-words"&gt;
 &lt;h2&gt;Final words&lt;/h2&gt;
 &lt;p&gt;Youtube-dl is an incredibly complete tool to download audio and videos from Youtube. Its batch mode open the doors to really naughty uses like audio scrapping (for research purposes, of course).&lt;/p&gt;
-&lt;p&gt;The parallelization of my batch script looks to have had an interesting outcome. A small number of processes can increase the performance almost &lt;em&gt;1.5x&lt;/em&gt;, which is not that bad. The script could be improved, of course. Some of these improvements would include to not overlap ffmpeg conversions (it may use more than one core and produce a bottleneck) and improving the load balance. Of course, this would mean to have finer control over youtube-dl, and also to code some more hundred lines of code.&lt;/p&gt;
+&lt;p&gt;The parallelization of my batch script looks to have had an interesting outcome. A small number of processes can increase the performance almost &lt;em&gt;1.5x&lt;/em&gt;, which is not that bad. The script could be improved, of course. It would be interesting to avoid overlapping ffmpeg conversions (it may use more than one core and produce a bottleneck) and to improve the load balance. Of course, this would mean to have finer control over youtube-dl, and also to code some more hundred lines of code.&lt;/p&gt;
 &lt;p&gt;Remember that musicians are not photosynthetic (yet) and they need your money to live. If you like their music, consider contributing with their work by buying original discs and going to their concerts.&lt;/p&gt;
 &lt;p&gt;But, anyway, the next time you feel the urge of downloading some music from Youtube, just stay apart from all those über-complex contraptions hanging around. Use the command line!&lt;/p&gt;
 &lt;p&gt;Take care!&lt;/p&gt;
