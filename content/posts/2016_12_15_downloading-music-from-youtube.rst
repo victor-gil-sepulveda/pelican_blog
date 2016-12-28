@@ -83,13 +83,19 @@ The average results for the "small batch" are shown in the plot below (times ave
 
 As you can see, the serial behaviour (for n = 2, n = 1 was omitted) is very similar (speedup around *1x*). The maximum speedups is obtained with 6 processes (*1.8x*), but it is obvious that increasing the number of processes above 5 does not throw better results. The performance decreases slightly when using 7 processes, which may be related with the fact that my CPU has only 6 cores (I had to try ^.^u ).  Indeed the most noticeable gain is obtained using only 3 processes (2 worker processes). 
 
-[BIG ANALYSIS BEING COOKED!]
+When trying to download more and larger videos the behaviour looks like this:
+
+.. image:: {filename}/images/2016_12_15_downloading-music-from-youtube__big_time.png
+	:width: 600 px
+   	:alt: Plot 2
+
+The test was averaged over a minimum of 3 runs (an outlier for n=6 was removed). The plot shows that, again, the maximum performance change is obtained with n=3 (2 "real processes"). Given that youtube-dl took around 711s to download the files, the speedup for n=3 is already a not-that-bad *1.3x*.
 
 Final words
 ~~~~~~~~~~~
 Youtube-dl is an incredibly complete tool to download audio and videos from Youtube. Its batch mode open the doors to really naughty uses like audio scrapping (for research purposes, of course).
 
-The parallelization of my batch script looks to have had an interesting outcome. A small number of processes can increase the performance almost *1.5x*, which is not that bad. The script could be improved, of course. Some of these improvements would include to not overlap ffmpeg conversions (it may use more than one core and produce a bottleneck) and improving the load balance. Of course, this would mean to have finer control over youtube-dl, and also to code some more hundred lines of code. 
+The parallelization of my batch script looks to have had an interesting outcome. A small number of processes can increase the performance almost *1.5x*, which is not that bad. The script could be improved, of course. It would be interesting to avoid overlapping ffmpeg conversions (it may use more than one core and produce a bottleneck) and to improve the load balance. Of course, this would mean to have finer control over youtube-dl, and also to code some more hundred lines of code. 
 
 Remember that musicians are not photosynthetic (yet) and they need your money to live. If you like their music, consider contributing with their work by buying original discs and going to their concerts.
 
